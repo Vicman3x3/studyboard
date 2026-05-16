@@ -6,8 +6,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { DialogModule } from 'primeng/dialog';
 import { MessageModule } from 'primeng/message';
-import { MateriasService } from '../../../core/services/materias.service';
-import { Materia, CreateMateriaRequest, UpdateMateriaRequest } from '../../../core/models/materia.model';
+import { HttpService } from '../../../core/services/http.service';
+import { API_ENDPOINTS } from '../../../core/config/api.endpoints';
+import { Materia, CreateMateriaRequest, UpdateMateriaRequest, MateriaResponse } from '../../../core/models/materia.model';
 
 @Component({
   selector: 'app-materia-form',
@@ -25,7 +26,7 @@ import { Materia, CreateMateriaRequest, UpdateMateriaRequest } from '../../../co
   styleUrl: './materia-form.component.scss',
 })
 export class MateriaFormComponent {
-  private readonly materiasService = inject(MateriasService);
+  private readonly httpService = inject(HttpService);
 
   @Input() visible = false;
   @Input() materia: Materia | null = null;
@@ -59,8 +60,14 @@ export class MateriaFormComponent {
     this.errorMessage.set('');
 
     const request = this.materia
-      ? this.materiasService.update(this.materia.id, this.formData())
-      : this.materiasService.create(this.formData() as CreateMateriaRequest);
+      ? this.httpService.patch<MateriaResponse>(
+          API_ENDPOINTS.materias.update(this.materia.id),
+          this.formData()
+        )
+      : this.httpService.post<MateriaResponse>(
+          API_ENDPOINTS.materias.create,
+          this.formData()
+        );
 
     request.subscribe({
       next: () => {

@@ -7,8 +7,9 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { MessageModule } from 'primeng/message';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
-import { MateriasService } from '../../../core/services/materias.service';
-import { Materia } from '../../../core/models/materia.model';
+import { HttpService } from '../../../core/services/http.service';
+import { API_ENDPOINTS } from '../../../core/config/api.endpoints';
+import { Materia, MateriasListResponse, MateriaResponse } from '../../../core/models/materia.model';
 import { MateriaFormComponent } from '../materia-form/materia-form.component';
 
 @Component({
@@ -29,7 +30,7 @@ import { MateriaFormComponent } from '../materia-form/materia-form.component';
   styleUrl: './materias-list.component.scss',
 })
 export class MateriasListComponent implements OnInit {
-  private readonly materiasService = inject(MateriasService);
+  private readonly httpService = inject(HttpService);
   private readonly confirmationService = inject(ConfirmationService);
 
   readonly materias = signal<Materia[]>([]);
@@ -46,7 +47,7 @@ export class MateriasListComponent implements OnInit {
     this.isLoading.set(true);
     this.errorMessage.set('');
 
-    this.materiasService.getAll().subscribe({
+    this.httpService.get<MateriasListResponse>(API_ENDPOINTS.materias.getAll).subscribe({
       next: (response) => {
         this.materias.set(response.data);
         this.isLoading.set(false);
@@ -79,7 +80,7 @@ export class MateriasListComponent implements OnInit {
       rejectLabel: 'Cancelar',
       acceptButtonStyleClass: 'p-button-danger',
       accept: () => {
-        this.materiasService.delete(materia.id).subscribe({
+        this.httpService.delete<MateriaResponse>(API_ENDPOINTS.materias.delete(materia.id)).subscribe({
           next: () => {
             this.loadMaterias();
           },
