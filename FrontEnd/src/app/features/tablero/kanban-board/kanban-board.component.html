@@ -1,0 +1,142 @@
+<div class="kanban-container">
+  <div class="header">
+    <div class="header-left">
+      <h1>Tablero Kanban</h1>
+      <p-button
+        label="Nueva Tarea"
+        icon="pi pi-plus"
+        (onClick)="openCreateDialog()"
+      />
+    </div>
+    <div class="header-right">
+      <p-dropdown
+        [options]="materias()"
+        [(ngModel)]="selectedMateria"
+        (ngModelChange)="onMateriaFilterChange()"
+        optionLabel="nombre"
+        placeholder="Todas las materias"
+        [showClear]="true"
+        styleClass="filter-dropdown"
+      />
+    </div>
+  </div>
+
+  @if (errorMessage()) {
+    <p-message severity="error" [text]="errorMessage()" styleClass="w-full mb-3" />
+  }
+
+  @if (isLoading()) {
+    <div class="kanban-board">
+      @for (col of [1,2,3]; track col) {
+        <div class="kanban-column">
+          <p-skeleton width="100%" height="3rem" styleClass="mb-2" />
+          @for (item of [1,2]; track item) {
+            <p-skeleton width="100%" height="8rem" styleClass="mb-2" />
+          }
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="kanban-board">
+      <!-- Columna Pendiente -->
+      <div class="kanban-column pendiente">
+        <div class="column-header">
+          <h3>
+            <i class="pi pi-circle"></i>
+            Pendiente
+          </h3>
+          <span class="count">{{ tareasPendientes().length }}</span>
+        </div>
+        <div
+          class="column-content"
+          pDroppable="pendiente"
+          (onDrop)="onTareaDropped($event.dragData, EstadoTarea.PENDIENTE)"
+        >
+          @for (tarea of tareasPendientes(); track tarea.id) {
+            <app-tarea-card
+              [tarea]="tarea"
+              (onEdit)="editTarea($event)"
+              pDraggable="pendiente"
+              [dragData]="tarea"
+            />
+          }
+          @if (tareasPendientes().length === 0) {
+            <div class="empty-column">
+              <i class="pi pi-inbox"></i>
+              <p>No hay tareas pendientes</p>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Columna En Progreso -->
+      <div class="kanban-column en-progreso">
+        <div class="column-header">
+          <h3>
+            <i class="pi pi-spin pi-spinner"></i>
+            En Progreso
+          </h3>
+          <span class="count">{{ tareasEnProgreso().length }}</span>
+        </div>
+        <div
+          class="column-content"
+          pDroppable="en-progreso"
+          (onDrop)="onTareaDropped($event.dragData, EstadoTarea.EN_PROGRESO)"
+        >
+          @for (tarea of tareasEnProgreso(); track tarea.id) {
+            <app-tarea-card
+              [tarea]="tarea"
+              (onEdit)="editTarea($event)"
+              pDraggable="en-progreso"
+              [dragData]="tarea"
+            />
+          }
+          @if (tareasEnProgreso().length === 0) {
+            <div class="empty-column">
+              <i class="pi pi-inbox"></i>
+              <p>No hay tareas en progreso</p>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Columna Completada -->
+      <div class="kanban-column completada">
+        <div class="column-header">
+          <h3>
+            <i class="pi pi-check-circle"></i>
+            Completada
+          </h3>
+          <span class="count">{{ tareasCompletadas().length }}</span>
+        </div>
+        <div
+          class="column-content"
+          pDroppable="completada"
+          (onDrop)="onTareaDropped($event.dragData, EstadoTarea.COMPLETADA)"
+        >
+          @for (tarea of tareasCompletadas(); track tarea.id) {
+            <app-tarea-card
+              [tarea]="tarea"
+              (onEdit)="editTarea($event)"
+              pDraggable="completada"
+              [dragData]="tarea"
+            />
+          }
+          @if (tareasCompletadas().length === 0) {
+            <div class="empty-column">
+              <i class="pi pi-inbox"></i>
+              <p>No hay tareas completadas</p>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</div>
+
+<app-tarea-form
+  [(visible)]="showFormDialog()"
+  [tarea]="editingTarea()"
+  [materias]="materias()"
+  (onSuccess)="onFormSuccess()"
+/>

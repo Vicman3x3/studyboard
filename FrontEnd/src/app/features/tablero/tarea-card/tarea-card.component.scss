@@ -1,0 +1,83 @@
+@import '../../../../styles/mixins';
+
+.tarea-card {
+  background: $bg-main;
+  border-radius: $radius-md;
+  border-left: 4px solid;
+  padding: 1rem;
+  cursor: move;
+  transition: box-shadow 0.2s, transform 0.2s;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .card-header {
+    @include flex-between;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+
+    h4 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: $text-primary;
+      flex: 1;
+      line-height: 1.4;
+    }
+  }
+
+  .descripcion {
+    margin: 0 0 0.75rem;
+    font-size: 0.875rem;
+    color: $text-secondary;
+    line-height: 1.5;
+    @include line-clamp(2);
+  }
+
+  .card-meta {
+    @include flex-align-center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+
+    :host ::ng-deep .materia-chip {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      height: auto;
+    }
+
+    :host ::ng-deep .prioridad-tag {
+      font-size: 0.7rem;
+      padding: 0.25rem 0.5rem;
+    }
+  }
+
+  .fecha-entrega {
+    @include flex-align-center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: $text-secondary;
+    padding-top: 0.5rem;
+    border-top: 1px solid $border-color;
+
+    i {
+      font-size: 0.9rem;
+    }
+
+    &.overdue {
+      color: $color-danger;
+      font-weight: 500;
+
+      i {
+        color: $color-danger;
+      }
+    }
+  }
+}
+
+:host ::ng-deep .p-button.p-button-text.p-button-rounded {
+  width: 2rem;
+  height: 2rem;
+}

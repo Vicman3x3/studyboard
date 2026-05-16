@@ -29,7 +29,7 @@
 | 01 — Auth | ✅ | 10 / 10 |
 | 02 — Semestres | ⬜ | 0 / 8 |
 | 03 — Materias | ✅ | 9 / 9 |
-| 04 — Tablero Kanban | ⬜ | 0 / 11 |
+| 04 — Tablero Kanban | ✅ | 11 / 11 |
 | 05 — Horario | ⬜ | 0 / 8 |
 | 06 — Temarios | ⬜ | 0 / 9 |
 | 07 — Calificaciones | ⬜ | 0 / 10 |
@@ -37,7 +37,7 @@
 | 09 — Alertas | ⬜ | 0 / 6 |
 | 10 — Documentos (Fase 3) | ⬜ | 0 / 8 |
 
-**Total:** 25 / 93 tareas completadas
+**Total:** 36 / 93 tareas completadas
 
 ---
 
@@ -108,18 +108,18 @@
 | # | Tarea | Prioridad | Complejidad | Dep. | Estado |
 |---|-------|-----------|-------------|------|--------|
 | **BACKEND** |
-| 04-01 | Entidad `Tarea` (id, título, descripción, estado, prioridad, fechaEntrega, materia_id) | 🔴 Alta | 🔷 Baja | 03-01 | ⬜ |
-| 04-02 | CRUD `TareasController` + `TareasService` | 🔴 Alta | 🔶 Media | 04-01 | ⬜ |
-| 04-03 | Endpoint `PATCH /tareas/:id/estado` para mover columna | 🔴 Alta | 🔷 Baja | 04-02 | ⬜ |
-| 04-04 | Filtro por materia en `GET /tareas?materia_id=` | 🔴 Alta | 🔷 Baja | 04-02 | ⬜ |
+| 04-01 | Entidad `Tarea` (id, título, descripción, estado, prioridad, fechaEntrega, materia_id) | 🔴 Alta | 🔷 Baja | 03-01 | ✅ |
+| 04-02 | CRUD `TareasController` + `TareasService` | 🔴 Alta | 🔶 Media | 04-01 | ✅ |
+| 04-03 | Endpoint `PATCH /tareas/:id/estado` para mover columna | 🔴 Alta | 🔷 Baja | 04-02 | ✅ |
+| 04-04 | Filtro por materia en `GET /tareas?materia_id=` | 🔴 Alta | 🔷 Baja | 04-02 | ✅ |
 | **FRONTEND** |
-| 04-05 | `TareasService` — llamadas HTTP | 🔴 Alta | 🔷 Baja | 04-02 | ⬜ |
-| 04-06 | `KanbanBoardComponent` — 3 columnas con `pDragDrop` de PrimeNG | 🔴 Alta | ⚡ Alta | 04-05 | ⬜ |
-| 04-07 | `TareaCardComponent` — tarjeta con color de materia, prioridad, fecha | 🔴 Alta | 🔶 Media | 04-06 | ⬜ |
-| 04-08 | `TareaFormComponent` — dialog para crear/editar tarea (selector de materia + fecha) | 🔴 Alta | 🔶 Media | 04-05 | ⬜ |
-| 04-09 | Filtro por materia en el tablero (dropdown PrimeNG) | 🔴 Alta | 🔷 Baja | 04-06 | ⬜ |
-| 04-10 | Indicador visual de prioridad (Alta / Media / Baja) en tarjeta | 🟡 Media | 🔷 Baja | 04-07 | ⬜ |
-| 04-11 | Ruta lazy-loaded `/tablero` | 🔴 Alta | 🔷 Baja | 04-06 | ⬜ |
+| 04-05 | `TareasService` — llamadas HTTP | 🔴 Alta | 🔷 Baja | 04-02 | ✅ |
+| 04-06 | `KanbanBoardComponent` — 3 columnas con `pDragDrop` de PrimeNG | 🔴 Alta | ⚡ Alta | 04-05 | ✅ |
+| 04-07 | `TareaCardComponent` — tarjeta con color de materia, prioridad, fecha | 🔴 Alta | 🔶 Media | 04-06 | ✅ |
+| 04-08 | `TareaFormComponent` — dialog para crear/editar tarea (selector de materia + fecha) | 🔴 Alta | 🔶 Media | 04-05 | ✅ |
+| 04-09 | Filtro por materia en el tablero (dropdown PrimeNG) | 🔴 Alta | 🔷 Baja | 04-06 | ✅ |
+| 04-10 | Indicador visual de prioridad (Alta / Media / Baja) en tarjeta | 🟡 Media | 🔷 Baja | 04-07 | ✅ |
+| 04-11 | Ruta lazy-loaded `/tablero` | 🔴 Alta | 🔷 Baja | 04-06 | ✅ |
 
 ---
 

@@ -1,0 +1,46 @@
+<div
+  class="tarea-card"
+  [style.border-left-color]="tarea.materia?.color || '#ccc'"
+>
+  <div class="card-header">
+    <h4>{{ tarea.titulo }}</h4>
+    <p-button
+      icon="pi pi-pencil"
+      [text]="true"
+      [rounded]="true"
+      size="small"
+      severity="secondary"
+      (onClick)="editTarea()"
+    />
+  </div>
+
+  @if (tarea.descripcion) {
+    <p class="descripcion">{{ tarea.descripcion }}</p>
+  }
+
+  <div class="card-meta">
+    @if (tarea.materia) {
+      <p-chip
+        [label]="tarea.materia.nombre"
+        [style]="{
+          'background-color': tarea.materia.color + '20',
+          'color': tarea.materia.color
+        }"
+        styleClass="materia-chip"
+      />
+    }
+
+    <p-tag
+      [value]="getPrioridadLabel(tarea.prioridad)"
+      [severity]="getPrioridadSeverity(tarea.prioridad)"
+      styleClass="prioridad-tag"
+    />
+  </div>
+
+  @if (tarea.fechaEntrega) {
+    <div class="fecha-entrega" [class.overdue]="isOverdue()">
+      <i class="pi" [class.pi-calendar]="!isOverdue()" [class.pi-exclamation-triangle]="isOverdue()"></i>
+      <span>{{ tarea.fechaEntrega | date: 'dd/MM/yyyy' }}</span>
+    </div>
+  }
+</div>

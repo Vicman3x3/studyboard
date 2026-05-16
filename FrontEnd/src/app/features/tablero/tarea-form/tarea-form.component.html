@@ -1,0 +1,108 @@
+<p-dialog
+  [(visible)]="visible"
+  [header]="tarea ? 'Editar Tarea' : 'Nueva Tarea'"
+  [modal]="true"
+  [closable]="!isLoading()"
+  [closeOnEscape]="!isLoading()"
+  [draggable]="false"
+  [resizable]="false"
+  styleClass="tarea-dialog"
+  (onHide)="closeDialog()"
+>
+  <form (ngSubmit)="onSubmit()" #tareaForm="ngForm">
+    @if (errorMessage()) {
+      <p-message severity="error" [text]="errorMessage()" styleClass="w-full mb-3" />
+    }
+
+    <div class="form-grid">
+      <div class="field col-12">
+        <label for="titulo">Título *</label>
+        <input
+          pInputText
+          id="titulo"
+          type="text"
+          [ngModel]="formData().titulo"
+          (ngModelChange)="updateFormData('titulo', $event)"
+          name="titulo"
+          required
+          placeholder="Ej: Entregar proyecto final"
+          class="w-full"
+        />
+      </div>
+
+      <div class="field col-12">
+        <label for="descripcion">Descripción</label>
+        <textarea
+          pInputTextarea
+          id="descripcion"
+          [ngModel]="formData().descripcion"
+          (ngModelChange)="updateFormData('descripcion', $event)"
+          name="descripcion"
+          placeholder="Detalles de la tarea..."
+          [rows]="4"
+          class="w-full"
+        ></textarea>
+      </div>
+
+      <div class="field col-6">
+        <label for="materia">Materia *</label>
+        <p-dropdown
+          [options]="materias"
+          [ngModel]="formData().materiaId"
+          (ngModelChange)="updateFormData('materiaId', $event)"
+          inputId="materia"
+          name="materia"
+          optionLabel="nombre"
+          optionValue="id"
+          placeholder="Selecciona una materia"
+          required
+          styleClass="w-full"
+        />
+      </div>
+
+      <div class="field col-6">
+        <label for="prioridad">Prioridad</label>
+        <p-dropdown
+          [options]="prioridadOptions"
+          [ngModel]="formData().prioridad"
+          (ngModelChange)="updateFormData('prioridad', $event)"
+          inputId="prioridad"
+          name="prioridad"
+          optionLabel="label"
+          optionValue="value"
+          styleClass="w-full"
+        />
+      </div>
+
+      <div class="field col-12">
+        <label for="fechaEntrega">Fecha de entrega</label>
+        <p-calendar
+          [ngModel]="formData().fechaEntrega"
+          (ngModelChange)="updateFormData('fechaEntrega', $event)"
+          inputId="fechaEntrega"
+          name="fechaEntrega"
+          dateFormat="dd/mm/yy"
+          [showIcon]="true"
+          placeholder="Selecciona una fecha"
+          styleClass="w-full"
+        />
+      </div>
+    </div>
+
+    <div class="dialog-footer">
+      <p-button
+        label="Cancelar"
+        severity="secondary"
+        [text]="true"
+        (onClick)="closeDialog()"
+        [disabled]="isLoading()"
+      />
+      <p-button
+        type="submit"
+        [label]="tarea ? 'Guardar Cambios' : 'Crear Tarea'"
+        [loading]="isLoading()"
+        [disabled]="!tareaForm.valid || isLoading()"
+      />
+    </div>
+  </form>
+</p-dialog>

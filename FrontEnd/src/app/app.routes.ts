@@ -22,6 +22,12 @@ export const routes: Routes = [
       import('./features/materias/materias.routes').then((m) => m.materiasRoutes),
   },
   {
+    path: 'tablero',
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import('./features/tablero/tablero.routes').then((m) => m.tableroRoutes),
+  },
+  {
     path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full',
