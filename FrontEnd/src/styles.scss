@@ -1,0 +1,197 @@
+// =============================================================================
+// StudyBoard — Estilos globales
+// =============================================================================
+
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+// PrimeIcons
+@import 'primeicons/primeicons.css';
+
+// -----------------------------------------------------------------------------
+// Reset y base
+// -----------------------------------------------------------------------------
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: $font-size-base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: $font-family;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $text-primary;
+  background-color: $bg-main;
+}
+
+// -----------------------------------------------------------------------------
+// Tipografía base
+// -----------------------------------------------------------------------------
+h1, h2, h3, h4, h5, h6 {
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  color: $text-primary;
+}
+
+h1 { font-size: $font-size-3xl; }
+h2 { font-size: $font-size-2xl; }
+h3 { font-size: $font-size-xl; }
+h4 { font-size: $font-size-lg; }
+
+p {
+  margin-bottom: $spacing-md;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+a {
+  color: $uv-blue;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $uv-blue-light;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Utilidades
+// -----------------------------------------------------------------------------
+.text-primary { color: $text-primary !important; }
+.text-secondary { color: $text-secondary !important; }
+.text-muted { color: $text-muted !important; }
+.text-success { color: $color-success !important; }
+.text-danger { color: $color-danger !important; }
+.text-warning { color: $color-warning !important; }
+.text-info { color: $color-info !important; }
+
+.bg-main { background-color: $bg-main !important; }
+.bg-surface { background-color: $bg-surface !important; }
+.bg-overlay { background-color: $bg-overlay !important; }
+
+.mt-0 { margin-top: 0 !important; }
+.mt-1 { margin-top: $spacing-sm !important; }
+.mt-2 { margin-top: $spacing-md !important; }
+.mt-3 { margin-top: $spacing-lg !important; }
+.mt-4 { margin-top: $spacing-xl !important; }
+
+.mb-0 { margin-bottom: 0 !important; }
+.mb-1 { margin-bottom: $spacing-sm !important; }
+.mb-2 { margin-bottom: $spacing-md !important; }
+.mb-3 { margin-bottom: $spacing-lg !important; }
+.mb-4 { margin-bottom: $spacing-xl !important; }
+
+.p-0 { padding: 0 !important; }
+.p-1 { padding: $spacing-sm !important; }
+.p-2 { padding: $spacing-md !important; }
+.p-3 { padding: $spacing-lg !important; }
+.p-4 { padding: $spacing-xl !important; }
+
+.gap-1 { gap: $spacing-sm !important; }
+.gap-2 { gap: $spacing-md !important; }
+.gap-3 { gap: $spacing-lg !important; }
+
+.flex { display: flex !important; }
+.flex-column { flex-direction: column !important; }
+.flex-wrap { flex-wrap: wrap !important; }
+.items-center { align-items: center !important; }
+.items-start { align-items: flex-start !important; }
+.items-end { align-items: flex-end !important; }
+.justify-center { justify-content: center !important; }
+.justify-between { justify-content: space-between !important; }
+.justify-end { justify-content: flex-end !important; }
+
+.w-full { width: 100% !important; }
+.h-full { height: 100% !important; }
+
+.text-center { text-align: center !important; }
+.text-left { text-align: left !important; }
+.text-right { text-align: right !important; }
+
+.font-medium { font-weight: $font-weight-medium !important; }
+.font-semibold { font-weight: $font-weight-semibold !important; }
+.font-bold { font-weight: $font-weight-bold !important; }
+
+.truncate {
+  @include truncate;
+}
+
+// -----------------------------------------------------------------------------
+// Layout principal
+// -----------------------------------------------------------------------------
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding: $spacing-lg;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+// -----------------------------------------------------------------------------
+// Cards
+// -----------------------------------------------------------------------------
+.card {
+  @include card;
+  padding: $spacing-lg;
+}
+
+.card-interactive {
+  @include card;
+  @include card-hover;
+  padding: $spacing-lg;
+}
+
+// -----------------------------------------------------------------------------
+// PrimeNG overrides — colores UV
+// -----------------------------------------------------------------------------
+:root {
+  // Primary (azul UV)
+  --p-primary-50: #{$uv-blue-soft};
+  --p-primary-100: #D1E3F8;
+  --p-primary-200: #A3C7F1;
+  --p-primary-300: #75ABE9;
+  --p-primary-400: #{$uv-blue-light};
+  --p-primary-500: #{$uv-blue};
+  --p-primary-600: #003270;
+  --p-primary-700: #002656;
+  --p-primary-800: #00193B;
+  --p-primary-900: #000D21;
+
+  // Success (verde UV)
+  --p-green-50: #{$uv-green-soft};
+  --p-green-100: #C6E9D3;
+  --p-green-200: #8DD4A7;
+  --p-green-300: #{$uv-green-light};
+  --p-green-400: #00A64A;
+  --p-green-500: #{$uv-green};
+  --p-green-600: #006A31;
+  --p-green-700: #005025;
+  --p-green-800: #003518;
+  --p-green-900: #001B0C;
+
+  // Surface colors
+  --p-surface-0: #{$bg-main};
+  --p-surface-50: #{$bg-surface};
+  --p-surface-100: #{$bg-overlay};
+
+  // Text colors
+  --p-text-color: #{$text-primary};
+  --p-text-muted-color: #{$text-secondary};
+}

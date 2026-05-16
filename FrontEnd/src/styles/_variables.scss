@@ -1,0 +1,109 @@
+// =============================================================================
+// StudyBoard — Variables de diseño
+// Paleta institucional Universidad Veracruzana
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Paleta UV
+// -----------------------------------------------------------------------------
+$uv-blue:        #003F8A;   // Azul institucional UV
+$uv-blue-light:  #1A6DB5;   // Azul claro — hover, bordes activos
+$uv-blue-soft:   #E8F0FB;   // Azul muy suave — fondos de sección
+$uv-green:       #00843D;   // Verde institucional UV
+$uv-green-light: #2DA05A;   // Verde claro — hover, éxito
+$uv-green-soft:  #E6F5EC;   // Verde muy suave — fondos de alerta positiva
+
+// -----------------------------------------------------------------------------
+// Fondos
+// -----------------------------------------------------------------------------
+$bg-main:        #FFFFFF;   // Fondo principal
+$bg-surface:     #F8F9FA;   // Fondo de tarjetas y paneles
+$bg-overlay:     #F0F2F5;   // Fondo de secciones agrupadas
+
+// -----------------------------------------------------------------------------
+// Texto
+// -----------------------------------------------------------------------------
+$text-primary:   #1A1A2E;   // Texto principal — casi negro azulado
+$text-secondary: #5A6475;   // Texto secundario — gris medio
+$text-muted:     #9AA3AF;   // Texto desactivado
+
+// -----------------------------------------------------------------------------
+// Semánticos
+// -----------------------------------------------------------------------------
+$color-success:  $uv-green;
+$color-info:     $uv-blue;
+$color-warning:  #F59E0B;
+$color-danger:   #DC2626;
+
+// -----------------------------------------------------------------------------
+// Tipografía
+// -----------------------------------------------------------------------------
+$font-family:    'Inter', 'Segoe UI', system-ui, sans-serif;
+$font-size-base: 14px;
+$font-size-sm:   12px;
+$font-size-lg:   16px;
+$font-size-xl:   20px;
+$font-size-2xl:  24px;
+$font-size-3xl:  30px;
+
+$font-weight-normal:  400;
+$font-weight-medium:  500;
+$font-weight-semibold: 600;
+$font-weight-bold:    700;
+
+$line-height-base: 1.5;
+$line-height-tight: 1.25;
+
+// -----------------------------------------------------------------------------
+// Espaciado
+// -----------------------------------------------------------------------------
+$spacing-unit: 8px;
+$spacing-xs:   $spacing-unit * 0.5;  // 4px
+$spacing-sm:   $spacing-unit;        // 8px
+$spacing-md:   $spacing-unit * 2;    // 16px
+$spacing-lg:   $spacing-unit * 3;    // 24px
+$spacing-xl:   $spacing-unit * 4;    // 32px
+$spacing-2xl:  $spacing-unit * 6;    // 48px
+
+// -----------------------------------------------------------------------------
+// Bordes
+// -----------------------------------------------------------------------------
+$radius-sm:    4px;
+$radius-md:    8px;
+$radius-lg:    12px;
+$radius-full:  9999px;
+$border-color: #DDE1E7;
+$border-width: 1px;
+
+// -----------------------------------------------------------------------------
+// Sombras
+// -----------------------------------------------------------------------------
+$shadow-sm:  0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md:  0 4px 6px rgba(0, 0, 0, 0.07);
+$shadow-lg:  0 10px 15px rgba(0, 0, 0, 0.1);
+
+// -----------------------------------------------------------------------------
+// Transiciones
+// -----------------------------------------------------------------------------
+$transition-fast:   150ms ease;
+$transition-normal: 250ms ease;
+$transition-slow:   350ms ease;
+
+// -----------------------------------------------------------------------------
+// Breakpoints
+// -----------------------------------------------------------------------------
+$breakpoint-sm:  576px;
+$breakpoint-md:  768px;
+$breakpoint-lg:  992px;
+$breakpoint-xl:  1200px;
+$breakpoint-2xl: 1400px;
+
+// -----------------------------------------------------------------------------
+// Z-index
+// -----------------------------------------------------------------------------
+$z-dropdown:  1000;
+$z-sticky:    1020;
+$z-fixed:     1030;
+$z-modal:     1040;
+$z-popover:   1050;
+$z-tooltip:   1060;
