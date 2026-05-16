@@ -1,0 +1,34 @@
+<div class="dashboard-container">
+  <div class="header">
+    <h1>StudyBoard</h1>
+    <div class="user-info">
+      @if (currentUser(); as user) {
+        <span class="user-name">{{ user.name }}</span>
+        <p-button
+          label="Cerrar Sesión"
+          icon="pi pi-sign-out"
+          severity="secondary"
+          (onClick)="logout()"
+        />
+      }
+    </div>
+  </div>
+
+  <div class="content">
+    <p-card>
+      <ng-template pTemplate="header">
+        <h2>Bienvenido a StudyBoard</h2>
+      </ng-template>
+
+      <p>Dashboard en construcción. Sistema de autenticación funcionando correctamente.</p>
+
+      @if (currentUser(); as user) {
+        <div class="user-details">
+          <p><strong>Usuario:</strong> {{ user.name }}</p>
+          <p><strong>Email:</strong> {{ user.email }}</p>
+          <p><strong>ID:</strong> {{ user.id }}</p>
+        </div>
+      }
+    </p-card>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.dashboard-container {
+  min-height: 100vh;
+  background-color: $bg-surface;
+
+  .header {
+    background-color: $bg-main;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    @include flex-between;
+
+    h1 {
+      color: $uv-blue;
+      margin: 0;
+      font-size: 1.75rem;
+      font-weight: 700;
+    }
+
+    .user-info {
+      @include flex-align-center;
+      gap: 1rem;
+
+      .user-name {
+        color: $text-primary;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .content {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    h2 {
+      color: $uv-blue;
+      margin: 0 0 1rem;
+    }
+
+    .user-details {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background-color: $uv-blue-soft;
+      border-radius: 8px;
+
+      p {
+        margin: 0.5rem 0;
+        color: $text-primary;
+
+        strong {
+          color: $uv-blue;
+        }
+      }
+    }
+  }
+}

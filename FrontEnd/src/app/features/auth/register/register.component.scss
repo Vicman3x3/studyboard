@@ -1,0 +1,66 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+
+.register-container {
+  @include flex-center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, $uv-green-soft 0%, $uv-blue-soft 100%);
+  padding: 2rem;
+
+  .register-card {
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+
+    .card-header {
+      text-align: center;
+      padding: 2rem 2rem 0;
+
+      h2 {
+        color: $uv-green;
+        margin: 0 0 0.5rem;
+        font-size: 2rem;
+        font-weight: 700;
+      }
+
+      p {
+        color: $text-secondary;
+        margin: 0;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.field {
+  margin-bottom: 1.5rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: $text-primary;
+    font-weight: 500;
+  }
+}
+
+.actions {
+  margin-top: 2rem;
+}
+
+.footer-text {
+  text-align: center;
+  padding-top: 1rem;
+  color: $text-secondary;
+
+  .link {
+    color: $uv-green;
+    cursor: pointer;
+    font-weight: 500;
+    margin-left: 0.5rem;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
