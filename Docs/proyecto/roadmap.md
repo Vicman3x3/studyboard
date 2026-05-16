@@ -26,7 +26,7 @@
 | Módulo | Estado | Progreso |
 |--------|--------|----------|
 | 00 — Setup & Infraestructura | ✅ | 6 / 6 |
-| 01 — Auth | ⬜ | 0 / 10 |
+| 01 — Auth | ✅ | 10 / 10 |
 | 02 — Semestres | ⬜ | 0 / 8 |
 | 03 — Materias | ⬜ | 0 / 9 |
 | 04 — Tablero Kanban | ⬜ | 0 / 11 |
@@ -37,7 +37,7 @@
 | 09 — Alertas | ⬜ | 0 / 6 |
 | 10 — Documentos (Fase 3) | ⬜ | 0 / 8 |
 
-**Total:** 6 / 93 tareas completadas
+**Total:** 16 / 93 tareas completadas
 
 ---
 
@@ -67,17 +67,17 @@
 | # | Tarea | Prioridad | Complejidad | Dep. | Estado |
 |---|-------|-----------|-------------|------|--------|
 | **BACKEND** |
-| 01-01 | Entidad `Usuario` (id, nombre, email, passwordHash, createdAt) | 🔴 Alta | 🔷 Baja | 00-05 | ⬜ |
-| 01-02 | DTO `RegisterDto` y `LoginDto` con validaciones `class-validator` | 🔴 Alta | 🔷 Baja | 01-01 | ⬜ |
-| 01-03 | Servicio de hash de contraseñas con `bcrypt` | 🔴 Alta | 🔷 Baja | 01-01 | ⬜ |
-| 01-04 | Endpoints `POST /auth/register` y `POST /auth/login` | 🔴 Alta | 🔶 Media | 01-02, 01-03 | ⬜ |
-| 01-05 | Generación de access token + refresh token con `@nestjs/jwt` | 🔴 Alta | 🔶 Media | 01-04 | ⬜ |
-| 01-06 | Endpoint `POST /auth/refresh` para rotar tokens | 🔴 Alta | 🔶 Media | 01-05 | ⬜ |
-| 01-07 | `JwtAuthGuard` global — todas las rutas protegidas salvo auth | 🔴 Alta | 🔶 Media | 01-05 | ⬜ |
+| 01-01 | Entidad `Usuario` (id, nombre, email, passwordHash, createdAt) | 🔴 Alta | 🔷 Baja | 00-05 | ✅ |
+| 01-02 | DTO `RegisterDto` y `LoginDto` con validaciones `class-validator` | 🔴 Alta | 🔷 Baja | 01-01 | ✅ |
+| 01-03 | Servicio de hash de contraseñas con `bcrypt` | 🔴 Alta | 🔷 Baja | 01-01 | ✅ |
+| 01-04 | Endpoints `POST /auth/register` y `POST /auth/login` | 🔴 Alta | 🔶 Media | 01-02, 01-03 | ✅ |
+| 01-05 | Generación de access token + refresh token con `@nestjs/jwt` | 🔴 Alta | 🔶 Media | 01-04 | ✅ |
+| 01-06 | Endpoint `POST /auth/refresh` para rotar tokens | 🔴 Alta | 🔶 Media | 01-05 | ✅ |
+| 01-07 | `JwtAuthGuard` global — todas las rutas protegidas salvo auth | 🔴 Alta | 🔶 Media | 01-05 | ✅ |
 | **FRONTEND** |
-| 01-08 | Páginas `LoginComponent` y `RegisterComponent` con PrimeNG | 🔴 Alta | 🔶 Media | 01-04 | ⬜ |
-| 01-09 | `AuthService` — login, register, logout, almacenar tokens en `localStorage` | 🔴 Alta | 🔶 Media | 01-08 | ⬜ |
-| 01-10 | `AuthInterceptor` (adjunta Bearer token) + `AuthGuard` (protege rutas) | 🔴 Alta | 🔶 Media | 01-09 | ⬜ |
+| 01-08 | Páginas `LoginComponent` y `RegisterComponent` con PrimeNG | 🔴 Alta | 🔶 Media | 01-04 | ✅ |
+| 01-09 | `AuthService` — login, register, logout, almacenar tokens en `localStorage` | 🔴 Alta | 🔶 Media | 01-08 | ✅ |
+| 01-10 | `AuthInterceptor` (adjunta Bearer token) + `AuthGuard` (protege rutas) | 🔴 Alta | 🔶 Media | 01-09 | ✅ |
 
 ---
 
