@@ -4,6 +4,14 @@ export const API_ENDPOINTS = {
     login: '/api/auth/login',
     refresh: '/api/auth/refresh',
   },
+  semestres: {
+    getAll: '/api/semestres',
+    getById: (id: string) => `/api/semestres/${id}`,
+    create: '/api/semestres',
+    update: (id: string) => `/api/semestres/${id}`,
+    delete: (id: string) => `/api/semestres/${id}`,
+    activar: (id: string) => `/api/semestres/${id}/activar`,
+  },
   materias: {
     getAll: '/api/materias',
     getById: (id: string) => `/api/materias/${id}`,

@@ -1,0 +1,44 @@
+@import '../../../../styles/mixins';
+
+:host ::ng-deep .semestre-dialog {
+  width: 90vw;
+  max-width: 600px;
+
+  .p-dialog-content {
+    padding: 1.5rem;
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    color: $text-primary;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  &.col-12 {
+    grid-column: span 12;
+  }
+
+  &.col-6 {
+    grid-column: span 6;
+  }
+}
+
+.dialog-footer {
+  @include flex-between;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $border-color;
+}

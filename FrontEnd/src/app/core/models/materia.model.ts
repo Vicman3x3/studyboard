@@ -5,6 +5,7 @@ export interface Materia {
   creditos: number;
   docente?: string;
   usuarioId: string;
+  semestreId?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -14,6 +15,7 @@ export interface CreateMateriaRequest {
   color: string;
   creditos: number;
   docente?: string;
+  semestreId?: string;
 }
 
 export interface UpdateMateriaRequest {
@@ -21,6 +23,7 @@ export interface UpdateMateriaRequest {
   color?: string;
   creditos?: number;
   docente?: string;
+  semestreId?: string;
 }
 
 export interface MateriaResponse {

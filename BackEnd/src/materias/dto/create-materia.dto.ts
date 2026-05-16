@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsInt, Min, Max, IsOptional, Matches } from 'class-validator';
+import { IsString, IsNotEmpty, IsInt, Min, Max, IsOptional, Matches, IsUUID } from 'class-validator';
 
 export class CreateMateriaDto {
   @IsString()
@@ -17,4 +17,8 @@ export class CreateMateriaDto {
   @IsString()
   @IsOptional()
   docente?: string;
+
+  @IsUUID()
+  @IsOptional()
+  semestreId?: string;
 }

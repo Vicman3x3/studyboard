@@ -3,28 +3,29 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
+  OneToMany,
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { Usuario } from '../auth/usuario.entity';
-import { Semestre } from '../semestres/semestre.entity';
+import { Materia } from '../materias/materia.entity';
 
-@Entity('materias')
-export class Materia {
+@Entity('semestres')
+export class Semestre {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({ length: 100 })
   nombre: string;
 
-  @Column({ length: 7 })
-  color: string;
+  @Column({ name: 'fecha_inicio', type: 'date' })
+  fechaInicio: Date;
 
-  @Column({ type: 'integer' })
-  creditos: number;
+  @Column({ name: 'fecha_fin', type: 'date' })
+  fechaFin: Date;
 
-  @Column({ length: 150, nullable: true })
-  docente: string;
+  @Column({ default: false })
+  activo: boolean;
 
   @ManyToOne(() => Usuario, { onDelete: 'CASCADE' })
   usuario: Usuario;
@@ -32,11 +33,8 @@ export class Materia {
   @Column({ name: 'usuario_id' })
   usuarioId: string;
 
-  @ManyToOne(() => Semestre, (semestre) => semestre.materias, { nullable: true })
-  semestre: Semestre;
-
-  @Column({ name: 'semestre_id', nullable: true })
-  semestreId: string;
+  @OneToMany(() => Materia, (materia) => materia.semestre)
+  materias: Materia[];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

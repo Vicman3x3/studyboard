@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { MateriasModule } from './materias/materias.module';
 import { TareasModule } from './tareas/tareas.module';
+import { SemestresModule } from './semestres/semestres.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { TareasModule } from './tareas/tareas.module';
     }),
 
     AuthModule,
+    SemestresModule,
     MateriasModule,
     TareasModule,
   ],

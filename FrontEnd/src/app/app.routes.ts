@@ -16,6 +16,12 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'semestres',
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import('./features/semestres/semestres.routes').then((m) => m.semestresRoutes),
+  },
+  {
     path: 'materias',
     canActivate: [authGuard],
     loadChildren: () =>

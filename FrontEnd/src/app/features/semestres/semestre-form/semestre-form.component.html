@@ -1,0 +1,80 @@
+<p-dialog
+  [(visible)]="visible"
+  [header]="semestre ? 'Editar Semestre' : 'Nuevo Semestre'"
+  [modal]="true"
+  [closable]="!isLoading()"
+  [closeOnEscape]="!isLoading()"
+  [draggable]="false"
+  [resizable]="false"
+  styleClass="semestre-dialog"
+  (onHide)="closeDialog()"
+>
+  <form (ngSubmit)="onSubmit()" #semestreForm="ngForm">
+    @if (errorMessage()) {
+      <p-message severity="error" [text]="errorMessage()" styleClass="w-full mb-3" />
+    }
+
+    <div class="form-grid">
+      <div class="field col-12">
+        <label for="nombre">Nombre del semestre *</label>
+        <input
+          pInputText
+          id="nombre"
+          type="text"
+          [ngModel]="formData().nombre"
+          (ngModelChange)="updateFormData('nombre', $event)"
+          name="nombre"
+          required
+          placeholder="Ej: Enero - Julio 2024"
+          class="w-full"
+        />
+      </div>
+
+      <div class="field col-6">
+        <label for="fechaInicio">Fecha de inicio *</label>
+        <p-calendar
+          [ngModel]="formData().fechaInicio"
+          (ngModelChange)="updateFormData('fechaInicio', $event)"
+          inputId="fechaInicio"
+          name="fechaInicio"
+          dateFormat="dd/mm/yy"
+          [showIcon]="true"
+          placeholder="Selecciona fecha"
+          required
+          styleClass="w-full"
+        />
+      </div>
+
+      <div class="field col-6">
+        <label for="fechaFin">Fecha de fin *</label>
+        <p-calendar
+          [ngModel]="formData().fechaFin"
+          (ngModelChange)="updateFormData('fechaFin', $event)"
+          inputId="fechaFin"
+          name="fechaFin"
+          dateFormat="dd/mm/yy"
+          [showIcon]="true"
+          placeholder="Selecciona fecha"
+          required
+          styleClass="w-full"
+        />
+      </div>
+    </div>
+
+    <div class="dialog-footer">
+      <p-button
+        label="Cancelar"
+        severity="secondary"
+        [text]="true"
+        (onClick)="closeDialog()"
+        [disabled]="isLoading()"
+      />
+      <p-button
+        type="submit"
+        [label]="semestre ? 'Guardar Cambios' : 'Crear Semestre'"
+        [loading]="isLoading()"
+        [disabled]="!semestreForm.valid || isLoading()"
+      />
+    </div>
+  </form>
+</p-dialog>

@@ -27,7 +27,7 @@
 |--------|--------|----------|
 | 00 — Setup & Infraestructura | ✅ | 6 / 6 |
 | 01 — Auth | ✅ | 10 / 10 |
-| 02 — Semestres | ⬜ | 0 / 8 |
+| 02 — Semestres | ✅ | 8 / 8 |
 | 03 — Materias | ✅ | 9 / 9 |
 | 04 — Tablero Kanban | ✅ | 11 / 11 |
 | 05 — Horario | ⬜ | 0 / 8 |
@@ -37,7 +37,7 @@
 | 09 — Alertas | ⬜ | 0 / 6 |
 | 10 — Documentos (Fase 3) | ⬜ | 0 / 8 |
 
-**Total:** 36 / 93 tareas completadas
+**Total:** 44 / 93 tareas completadas
 
 ---
 
@@ -134,15 +134,15 @@
 | # | Tarea | Prioridad | Complejidad | Dep. | Estado |
 |---|-------|-----------|-------------|------|--------|
 | **BACKEND** |
-| 02-01 | Entidad `Semestre` (id, nombre, fechaInicio, fechaFin, activo, usuario_id) | 🔴 Alta | 🔷 Baja | 01-01 | ⬜ |
-| 02-02 | CRUD `SemestresController` + `SemestresService` | 🔴 Alta | 🔶 Media | 02-01 | ⬜ |
-| 02-03 | Endpoint `PATCH /semestres/:id/activar` — solo un semestre activo a la vez | 🟡 Media | 🔷 Baja | 02-02 | ⬜ |
-| 02-04 | Relacionar `Materia` con `Semestre` (migración de FK) | 🔴 Alta | 🔶 Media | 02-01, 03-01 | ⬜ |
+| 02-01 | Entidad `Semestre` (id, nombre, fechaInicio, fechaFin, activo, usuario_id) | 🔴 Alta | 🔷 Baja | 01-01 | ✅ |
+| 02-02 | CRUD `SemestresController` + `SemestresService` | 🔴 Alta | 🔶 Media | 02-01 | ✅ |
+| 02-03 | Endpoint `PATCH /semestres/:id/activar` — solo un semestre activo a la vez | 🟡 Media | 🔷 Baja | 02-02 | ✅ |
+| 02-04 | Relacionar `Materia` con `Semestre` (migración de FK) | 🔴 Alta | 🔶 Media | 02-01, 03-01 | ✅ |
 | **FRONTEND** |
-| 02-05 | `SemestresListComponent` — lista con estado activo/inactivo | 🔴 Alta | 🔶 Media | 02-02 | ⬜ |
-| 02-06 | `SemestreFormComponent` — dialog crear/editar con fechas PrimeNG Calendar | 🔴 Alta | 🔶 Media | 02-02 | ⬜ |
-| 02-07 | Navegación: clic en semestre → muestra materias del semestre | 🔴 Alta | 🔶 Media | 02-05, 03-05 | ⬜ |
-| 02-08 | Ruta lazy-loaded `/semestres` | 🔴 Alta | 🔷 Baja | 02-05 | ⬜ |
+| 02-05 | `SemestresListComponent` — lista con estado activo/inactivo | 🔴 Alta | 🔶 Media | 02-02 | ✅ |
+| 02-06 | `SemestreFormComponent` — dialog crear/editar con fechas PrimeNG Calendar | 🔴 Alta | 🔶 Media | 02-02 | ✅ |
+| 02-07 | Navegación: clic en semestre → muestra materias del semestre | 🔴 Alta | 🔶 Media | 02-05, 03-05 | ✅ |
+| 02-08 | Ruta lazy-loaded `/semestres` | 🔴 Alta | 🔷 Baja | 02-05 | ✅ |
 
 ---
 

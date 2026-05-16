@@ -1,0 +1,111 @@
+<div class="semestres-container">
+  <div class="header">
+    <h1>Semestres</h1>
+    <p-button
+      label="Nuevo Semestre"
+      icon="pi pi-plus"
+      (onClick)="openCreateDialog()"
+    />
+  </div>
+
+  @if (errorMessage()) {
+    <p-message severity="error" [text]="errorMessage()" styleClass="w-full mb-3" />
+  }
+
+  @if (isLoading()) {
+    <div class="semestres-grid">
+      @for (item of [1,2,3,4]; track item) {
+        <p-card>
+          <p-skeleton width="100%" height="2rem" styleClass="mb-2" />
+          <p-skeleton width="60%" height="1rem" styleClass="mb-2" />
+          <p-skeleton width="40%" height="1rem" />
+        </p-card>
+      }
+    </div>
+  } @else {
+    @if (semestres().length === 0) {
+      <div class="empty-state">
+        <i class="pi pi-calendar" style="font-size: 4rem; color: var(--text-color-secondary);"></i>
+        <h3>No hay semestres registrados</h3>
+        <p>Comienza agregando tu primer semestre</p>
+        <p-button
+          label="Crear Semestre"
+          icon="pi pi-plus"
+          (onClick)="openCreateDialog()"
+        />
+      </div>
+    } @else {
+      <div class="semestres-grid">
+        @for (semestre of semestres(); track semestre.id) {
+          <p-card class="semestre-card" [class.activo]="semestre.activo">
+            <ng-template pTemplate="header">
+              <div class="card-header">
+                <h3>{{ semestre.nombre }}</h3>
+                @if (semestre.activo) {
+                  <p-tag value="Activo" severity="success" />
+                } @else {
+                  <p-tag value="Inactivo" severity="secondary" />
+                }
+              </div>
+            </ng-template>
+
+            <div class="fechas">
+              <div class="fecha-item">
+                <i class="pi pi-calendar"></i>
+                <span>{{ semestre.fechaInicio | date: 'dd/MM/yyyy' }}</span>
+              </div>
+              <span class="separator">→</span>
+              <div class="fecha-item">
+                <i class="pi pi-calendar"></i>
+                <span>{{ semestre.fechaFin | date: 'dd/MM/yyyy' }}</span>
+              </div>
+            </div>
+
+            <ng-template pTemplate="footer">
+              <div class="card-actions">
+                <p-button
+                  label="Ver Materias"
+                  icon="pi pi-book"
+                  severity="secondary"
+                  [text]="true"
+                  (onClick)="verMaterias(semestre)"
+                />
+                <div class="action-buttons">
+                  @if (!semestre.activo) {
+                    <p-button
+                      icon="pi pi-check"
+                      [text]="true"
+                      severity="success"
+                      pTooltip="Activar semestre"
+                      (onClick)="activarSemestre(semestre)"
+                    />
+                  }
+                  <p-button
+                    icon="pi pi-pencil"
+                    [text]="true"
+                    severity="secondary"
+                    (onClick)="editSemestre(semestre)"
+                  />
+                  <p-button
+                    icon="pi pi-trash"
+                    [text]="true"
+                    severity="danger"
+                    (onClick)="deleteSemestre(semestre)"
+                  />
+                </div>
+              </div>
+            </ng-template>
+          </p-card>
+        }
+      </div>
+    }
+  }
+</div>
+
+<app-semestre-form
+  [(visible)]="showFormDialog()"
+  [semestre]="selectedSemestre()"
+  (onSuccess)="onFormSuccess()"
+/>
+
+<p-confirmDialog />
