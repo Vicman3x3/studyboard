@@ -30,14 +30,14 @@
 | 02 — Semestres | ✅ | 8 / 8 |
 | 03 — Materias | ✅ | 9 / 9 |
 | 04 — Tablero Kanban | ✅ | 11 / 11 |
-| 05 — Horario | ⬜ | 0 / 8 |
+| 05 — Horario | ✅ | 8 / 8 |
 | 06 — Temarios | ⬜ | 0 / 9 |
 | 07 — Calificaciones | ⬜ | 0 / 10 |
 | 08 — Dashboard | ⬜ | 0 / 8 |
 | 09 — Alertas | ⬜ | 0 / 6 |
 | 10 — Documentos (Fase 3) | ⬜ | 0 / 8 |
 
-**Total:** 44 / 93 tareas completadas
+**Total:** 52 / 93 tareas completadas
 
 ---
 
@@ -151,15 +151,15 @@
 | # | Tarea | Prioridad | Complejidad | Dep. | Estado |
 |---|-------|-----------|-------------|------|--------|
 | **BACKEND** |
-| 05-01 | Entidad `BloqueHorario` (id, día, horaInicio, horaFin, aula, materia_id) | 🟡 Media | 🔷 Baja | 03-01 | ⬜ |
-| 05-02 | CRUD `HorarioController` + `HorarioService` | 🟡 Media | 🔶 Media | 05-01 | ⬜ |
+| 05-01 | Entidad `BloqueHorario` (id, día, horaInicio, horaFin, aula, materia_id) | 🟡 Media | 🔷 Baja | 03-01 | ✅ |
+| 05-02 | CRUD `HorarioController` + `HorarioService` | 🟡 Media | 🔶 Media | 05-01 | ✅ |
 | **FRONTEND** |
-| 05-03 | `HorarioService` — llamadas HTTP | 🟡 Media | 🔷 Baja | 05-02 | ⬜ |
-| 05-04 | `HorarioGridComponent` — grilla Lun–Sáb con horas como filas | 🟡 Media | ⚡ Alta | 05-03 | ⬜ |
-| 05-05 | Bloques coloreados por materia dentro de la grilla | 🟡 Media | 🔶 Media | 05-04 | ⬜ |
-| 05-06 | `BloqueFormComponent` — dialog para agregar/editar bloque (día, horas, aula) | 🟡 Media | 🔶 Media | 05-03 | ⬜ |
-| 05-07 | Vista responsive: en móvil mostrar horario como lista por día | 🟢 Baja | 🔶 Media | 05-04 | ⬜ |
-| 05-08 | Ruta lazy-loaded `/horario` | 🟡 Media | 🔷 Baja | 05-04 | ⬜ |
+| 05-03 | `HorarioService` — llamadas HTTP | 🟡 Media | 🔷 Baja | 05-02 | ✅ |
+| 05-04 | `HorarioGridComponent` — grilla Lun–Sáb con horas como filas | 🟡 Media | ⚡ Alta | 05-03 | ✅ |
+| 05-05 | Bloques coloreados por materia dentro de la grilla | 🟡 Media | 🔶 Media | 05-04 | ✅ |
+| 05-06 | `BloqueFormComponent` — dialog para agregar/editar bloque (día, horas, aula) | 🟡 Media | 🔶 Media | 05-03 | ✅ |
+| 05-07 | Vista responsive: en móvil mostrar horario como lista por día | 🟢 Baja | 🔶 Media | 05-04 | ✅ |
+| 05-08 | Ruta lazy-loaded `/horario` | 🟡 Media | 🔷 Baja | 05-04 | ✅ |
 
 ---
 
