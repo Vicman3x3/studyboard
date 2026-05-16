@@ -1,8 +1,8 @@
 import { Injectable, inject, signal, computed } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { tap, catchError, of } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { HttpService } from './http.service';
+import { API_ENDPOINTS } from '../config/api.endpoints';
 import {
   User,
   AuthResponse,
@@ -14,7 +14,7 @@ import {
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly http = inject(HttpClient);
+  private readonly httpService = inject(HttpService);
   private readonly router = inject(Router);
 
   private readonly currentUserSignal = signal<User | null>(null);
@@ -28,8 +28,8 @@ export class AuthService {
   }
 
   register(data: RegisterRequest) {
-    return this.http
-      .post<AuthResponse>(`${environment.apiUrl}/api/auth/register`, data)
+    return this.httpService
+      .post<AuthResponse>(API_ENDPOINTS.auth.register, data)
       .pipe(
         tap((response) => this.handleAuthSuccess(response)),
         catchError((error) => {
@@ -40,8 +40,8 @@ export class AuthService {
   }
 
   login(data: LoginRequest) {
-    return this.http
-      .post<AuthResponse>(`${environment.apiUrl}/api/auth/login`, data)
+    return this.httpService
+      .post<AuthResponse>(API_ENDPOINTS.auth.login, data)
       .pipe(
         tap((response) => this.handleAuthSuccess(response)),
         catchError((error) => {
@@ -63,9 +63,9 @@ export class AuthService {
       return of(null);
     }
 
-    return this.http
+    return this.httpService
       .post<{ data: { accessToken: string; refreshToken: string } }>(
-        `${environment.apiUrl}/api/auth/refresh`,
+        API_ENDPOINTS.auth.refresh,
         {}
       )
       .pipe(

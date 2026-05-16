@@ -1,0 +1,49 @@
+export const API_ENDPOINTS = {
+  auth: {
+    register: '/api/auth/register',
+    login: '/api/auth/login',
+    refresh: '/api/auth/refresh',
+  },
+  materias: {
+    getAll: '/api/materias',
+    getById: (id: string) => `/api/materias/${id}`,
+    create: '/api/materias',
+    update: (id: string) => `/api/materias/${id}`,
+    delete: (id: string) => `/api/materias/${id}`,
+  },
+  tareas: {
+    getAll: '/api/tareas',
+    getById: (id: string) => `/api/tareas/${id}`,
+    create: '/api/tareas',
+    update: (id: string) => `/api/tareas/${id}`,
+    delete: (id: string) => `/api/tareas/${id}`,
+    updateStatus: (id: string) => `/api/tareas/${id}/status`,
+  },
+  horarios: {
+    getAll: '/api/horarios',
+    getById: (id: string) => `/api/horarios/${id}`,
+    create: '/api/horarios',
+    update: (id: string) => `/api/horarios/${id}`,
+    delete: (id: string) => `/api/horarios/${id}`,
+  },
+  calificaciones: {
+    getAll: '/api/calificaciones',
+    getById: (id: string) => `/api/calificaciones/${id}`,
+    getByMateria: (materiaId: string) => `/api/calificaciones/materia/${materiaId}`,
+    create: '/api/calificaciones',
+    update: (id: string) => `/api/calificaciones/${id}`,
+    delete: (id: string) => `/api/calificaciones/${id}`,
+  },
+  apuntes: {
+    getAll: '/api/apuntes',
+    getById: (id: string) => `/api/apuntes/${id}`,
+    getByMateria: (materiaId: string) => `/api/apuntes/materia/${materiaId}`,
+    create: '/api/apuntes',
+    update: (id: string) => `/api/apuntes/${id}`,
+    delete: (id: string) => `/api/apuntes/${id}`,
+  },
+  dashboard: {
+    getStats: '/api/dashboard/stats',
+    getRecentActivity: '/api/dashboard/activity',
+  },
+} as const;
