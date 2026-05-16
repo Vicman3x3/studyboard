@@ -28,7 +28,7 @@
 | 00 — Setup & Infraestructura | ✅ | 6 / 6 |
 | 01 — Auth | ✅ | 10 / 10 |
 | 02 — Semestres | ⬜ | 0 / 8 |
-| 03 — Materias | ⬜ | 0 / 9 |
+| 03 — Materias | ✅ | 9 / 9 |
 | 04 — Tablero Kanban | ⬜ | 0 / 11 |
 | 05 — Horario | ⬜ | 0 / 8 |
 | 06 — Temarios | ⬜ | 0 / 9 |
@@ -37,7 +37,7 @@
 | 09 — Alertas | ⬜ | 0 / 6 |
 | 10 — Documentos (Fase 3) | ⬜ | 0 / 8 |
 
-**Total:** 16 / 93 tareas completadas
+**Total:** 25 / 93 tareas completadas
 
 ---
 
@@ -88,16 +88,16 @@
 | # | Tarea | Prioridad | Complejidad | Dep. | Estado |
 |---|-------|-----------|-------------|------|--------|
 | **BACKEND** |
-| 03-01 | Entidad `Materia` (id, nombre, color, créditos, docente, usuario_id) | 🔴 Alta | 🔷 Baja | 01-01 | ⬜ |
-| 03-02 | CRUD completo `MateriasController` + `MateriasService` | 🔴 Alta | 🔶 Media | 03-01 | ⬜ |
-| 03-03 | DTOs `CreateMateriaDto` / `UpdateMateriaDto` | 🔴 Alta | 🔷 Baja | 03-01 | ⬜ |
+| 03-01 | Entidad `Materia` (id, nombre, color, créditos, docente, usuario_id) | 🔴 Alta | 🔷 Baja | 01-01 | ✅ |
+| 03-02 | CRUD completo `MateriasController` + `MateriasService` | 🔴 Alta | 🔶 Media | 03-01 | ✅ |
+| 03-03 | DTOs `CreateMateriaDto` / `UpdateMateriaDto` | 🔴 Alta | 🔷 Baja | 03-01 | ✅ |
 | **FRONTEND** |
-| 03-04 | `MateriasService` — llamadas HTTP al backend | 🔴 Alta | 🔷 Baja | 03-02 | ⬜ |
-| 03-05 | `MateriasListComponent` — tarjetas de materias con color de chip | 🔴 Alta | 🔶 Media | 03-04 | ⬜ |
-| 03-06 | `MateriaFormComponent` — dialog con PrimeNG ColorPicker para crear/editar | 🔴 Alta | 🔶 Media | 03-04 | ⬜ |
-| 03-07 | Confirmación de eliminación con `ConfirmDialog` de PrimeNG | 🟡 Media | 🔷 Baja | 03-05 | ⬜ |
-| 03-08 | Ruta lazy-loaded `/materias` | 🔴 Alta | 🔷 Baja | 03-05 | ⬜ |
-| 03-09 | Badge de color en navbar/sidebar por materia activa | 🟡 Media | 🔷 Baja | 03-05 | ⬜ |
+| 03-04 | `MateriasService` — llamadas HTTP al backend | 🔴 Alta | 🔷 Baja | 03-02 | ✅ |
+| 03-05 | `MateriasListComponent` — tarjetas de materias con color de chip | 🔴 Alta | 🔶 Media | 03-04 | ✅ |
+| 03-06 | `MateriaFormComponent` — dialog con PrimeNG ColorPicker para crear/editar | 🔴 Alta | 🔶 Media | 03-04 | ✅ |
+| 03-07 | Confirmación de eliminación con `ConfirmDialog` de PrimeNG | 🟡 Media | 🔷 Baja | 03-05 | ✅ |
+| 03-08 | Ruta lazy-loaded `/materias` | 🔴 Alta | 🔷 Baja | 03-05 | ✅ |
+| 03-09 | Badge de color en navbar/sidebar por materia activa | 🟡 Media | 🔷 Baja | 03-05 | ✅ |
 
 ---
 

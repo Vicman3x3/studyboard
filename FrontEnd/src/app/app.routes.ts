@@ -16,6 +16,12 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'materias',
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import('./features/materias/materias.routes').then((m) => m.materiasRoutes),
+  },
+  {
     path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full',

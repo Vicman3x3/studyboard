@@ -1,0 +1,98 @@
+<p-dialog
+  [(visible)]="visible"
+  [header]="materia ? 'Editar Materia' : 'Nueva Materia'"
+  [modal]="true"
+  [closable]="!isLoading()"
+  [closeOnEscape]="!isLoading()"
+  [draggable]="false"
+  [resizable]="false"
+  styleClass="materia-dialog"
+  (onHide)="closeDialog()"
+>
+  <form (ngSubmit)="onSubmit()" #materiaForm="ngForm">
+    @if (errorMessage()) {
+      <p-message severity="error" [text]="errorMessage()" styleClass="w-full mb-3" />
+    }
+
+    <div class="form-grid">
+      <div class="field col-12">
+        <label for="nombre">Nombre de la materia *</label>
+        <input
+          pInputText
+          id="nombre"
+          type="text"
+          [ngModel]="formData().nombre"
+          (ngModelChange)="updateFormData('nombre', $event)"
+          name="nombre"
+          required
+          placeholder="Ej: Cálculo Diferencial"
+          class="w-full"
+        />
+      </div>
+
+      <div class="field col-6">
+        <label for="creditos">Créditos *</label>
+        <p-inputNumber
+          [(ngModel)]="formData().creditos"
+          (ngModelChange)="updateFormData('creditos', $event)"
+          inputId="creditos"
+          name="creditos"
+          [min]="1"
+          [max]="20"
+          [showButtons]="true"
+          buttonLayout="horizontal"
+          incrementButtonIcon="pi pi-plus"
+          decrementButtonIcon="pi pi-minus"
+          inputStyleClass="w-full"
+          styleClass="w-full"
+        />
+      </div>
+
+      <div class="field col-6">
+        <label for="color">Color *</label>
+        <div class="color-picker-wrapper">
+          <p-colorPicker
+            [(ngModel)]="formData().color"
+            (ngModelChange)="updateFormData('color', $event)"
+            inputId="color"
+            name="color"
+            format="hex"
+          />
+          <span class="color-preview" [style.background-color]="formData().color">
+            {{ formData().color }}
+          </span>
+        </div>
+      </div>
+
+      <div class="field col-12">
+        <label for="docente">Docente</label>
+        <input
+          pInputText
+          id="docente"
+          type="text"
+          [ngModel]="formData().docente"
+          (ngModelChange)="updateFormData('docente', $event)"
+          name="docente"
+          placeholder="Ej: Dr. Juan Pérez"
+          class="w-full"
+        />
+      </div>
+    </div>
+
+    <div class="dialog-footer">
+      <p-button
+        label="Cancelar"
+        severity="secondary"
+        [text]="true"
+        (onClick)="closeDialog()"
+        [disabled]="isLoading()"
+      />
+      <p-button
+        type="submit"
+        [label]="materia ? 'Guardar Cambios' : 'Crear Materia'"
+        [loading]="isLoading()"
+        [disabled]="!materiaForm.valid || isLoading()"
+      />
+    </div>
+  </form>
+</p-dialog>

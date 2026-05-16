@@ -1,0 +1,60 @@
+@import '../../../../styles/mixins';
+
+:host ::ng-deep .materia-dialog {
+  width: 90vw;
+  max-width: 600px;
+
+  .p-dialog-content {
+    padding: 1.5rem;
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    color: $text-primary;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  &.col-12 {
+    grid-column: span 12;
+  }
+
+  &.col-6 {
+    grid-column: span 6;
+  }
+}
+
+.color-picker-wrapper {
+  @include flex-align-center;
+  gap: 1rem;
+
+  .color-preview {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    border-radius: $radius-md;
+    color: white;
+    font-weight: 500;
+    text-align: center;
+    font-size: 0.85rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.dialog-footer {
+  @include flex-between;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $border-color;
+}

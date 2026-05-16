@@ -1,0 +1,87 @@
+<div class="materias-container">
+  <div class="header">
+    <h1>Mis Materias</h1>
+    <p-button
+      label="Nueva Materia"
+      icon="pi pi-plus"
+      (onClick)="openCreateDialog()"
+    />
+  </div>
+
+  @if (errorMessage()) {
+    <p-message severity="error" [text]="errorMessage()" styleClass="w-full mb-3" />
+  }
+
+  @if (isLoading()) {
+    <div class="materias-grid">
+      @for (item of [1,2,3,4]; track item) {
+        <p-card>
+          <p-skeleton width="100%" height="2rem" styleClass="mb-2" />
+          <p-skeleton width="60%" height="1rem" styleClass="mb-2" />
+          <p-skeleton width="40%" height="1rem" />
+        </p-card>
+      }
+    </div>
+  } @else {
+    @if (materias().length === 0) {
+      <div class="empty-state">
+        <i class="pi pi-book" style="font-size: 4rem; color: var(--text-color-secondary);"></i>
+        <h3>No hay materias registradas</h3>
+        <p>Comienza agregando tu primera materia</p>
+        <p-button
+          label="Crear Materia"
+          icon="pi pi-plus"
+          (onClick)="openCreateDialog()"
+        />
+      </div>
+    } @else {
+      <div class="materias-grid">
+        @for (materia of materias(); track materia.id) {
+          <p-card class="materia-card">
+            <ng-template pTemplate="header">
+              <div class="card-header" [style.border-left-color]="materia.color">
+                <h3>{{ materia.nombre }}</h3>
+                <p-chip
+                  [label]="materia.creditos + ' créditos'"
+                  [style]="{ 'background-color': materia.color + '20', 'color': materia.color }"
+                />
+              </div>
+            </ng-template>
+
+            @if (materia.docente) {
+              <div class="docente">
+                <i class="pi pi-user"></i>
+                <span>{{ materia.docente }}</span>
+              </div>
+            }
+
+            <ng-template pTemplate="footer">
+              <div class="card-actions">
+                <p-button
+                  icon="pi pi-pencil"
+                  [text]="true"
+                  severity="secondary"
+                  (onClick)="editMateria(materia)"
+                />
+                <p-button
+                  icon="pi pi-trash"
+                  [text]="true"
+                  severity="danger"
+                  (onClick)="deleteMateria(materia)"
+                />
+              </div>
+            </ng-template>
+          </p-card>
+        }
+      </div>
+    }
+  }
+</div>
+
+<app-materia-form
+  [(visible)]="showFormDialog()"
+  [materia]="selectedMateria()"
+  (onSuccess)="onFormSuccess()"
+/>
+
+<p-confirmDialog />
