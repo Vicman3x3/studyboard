@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { MateriasModule } from './materias/materias.module';
 import { TareasModule } from './tareas/tareas.module';
 import { SemestresModule } from './semestres/semestres.module';
+import { HorarioModule } from './horario/horario.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { SemestresModule } from './semestres/semestres.module';
     SemestresModule,
     MateriasModule,
     TareasModule,
+    HorarioModule,
   ],
   controllers: [AppController],
   providers: [AppService],

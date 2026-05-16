@@ -34,6 +34,12 @@ export const routes: Routes = [
       import('./features/tablero/tablero.routes').then((m) => m.tableroRoutes),
   },
   {
+    path: 'horario',
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import('./features/horario/horario.routes').then((m) => m.horarioRoutes),
+  },
+  {
     path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full',

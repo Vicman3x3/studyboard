@@ -1,0 +1,113 @@
+<p-dialog
+  [(visible)]="visible"
+  [header]="bloque ? 'Editar Bloque de Horario' : 'Nuevo Bloque de Horario'"
+  [modal]="true"
+  [closable]="!isLoading()"
+  [closeOnEscape]="!isLoading()"
+  [draggable]="false"
+  [resizable]="false"
+  styleClass="bloque-dialog"
+  (onHide)="closeDialog()"
+>
+  <form (ngSubmit)="onSubmit()" #bloqueForm="ngForm">
+    @if (errorMessage()) {
+      <p-message severity="error" [text]="errorMessage()" styleClass="w-full mb-3" />
+    }
+
+    <div class="form-grid">
+      <div class="field col-12">
+        <label for="materia">Materia *</label>
+        <p-dropdown
+          [options]="materias"
+          [ngModel]="formData().materiaId"
+          (ngModelChange)="updateFormData('materiaId', $event)"
+          inputId="materia"
+          name="materia"
+          optionLabel="nombre"
+          optionValue="id"
+          placeholder="Selecciona una materia"
+          required
+          styleClass="w-full"
+        />
+      </div>
+
+      <div class="field col-12">
+        <label for="dia">Día *</label>
+        <p-dropdown
+          [options]="diasSemana"
+          [ngModel]="formData().dia"
+          (ngModelChange)="updateFormData('dia', $event)"
+          inputId="dia"
+          name="dia"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Selecciona un día"
+          required
+          styleClass="w-full"
+        />
+      </div>
+
+      <div class="field col-6">
+        <label for="horaInicio">Hora de inicio *</label>
+        <p-dropdown
+          [options]="horasDia"
+          [ngModel]="formData().horaInicio"
+          (ngModelChange)="updateFormData('horaInicio', $event)"
+          inputId="horaInicio"
+          name="horaInicio"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Selecciona hora"
+          required
+          styleClass="w-full"
+        />
+      </div>
+
+      <div class="field col-6">
+        <label for="horaFin">Hora de fin *</label>
+        <p-dropdown
+          [options]="horasDia"
+          [ngModel]="formData().horaFin"
+          (ngModelChange)="updateFormData('horaFin', $event)"
+          inputId="horaFin"
+          name="horaFin"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Selecciona hora"
+          required
+          styleClass="w-full"
+        />
+      </div>
+
+      <div class="field col-12">
+        <label for="aula">Aula (opcional)</label>
+        <input
+          pInputText
+          id="aula"
+          type="text"
+          [ngModel]="formData().aula"
+          (ngModelChange)="updateFormData('aula', $event)"
+          name="aula"
+          placeholder="Ej: A-301, Lab 2, Aula 5"
+          class="w-full"
+        />
+      </div>
+    </div>
+
+    <div class="dialog-footer">
+      <p-button
+        label="Cancelar"
+        severity="secondary"
+        [text]="true"
+        (onClick)="closeDialog()"
+        [disabled]="isLoading()"
+      />
+      <p-button
+        type="submit"
+        [label]="bloque ? 'Guardar Cambios' : 'Crear Bloque'"
+        [loading]="isLoading()"
+        [disabled]="!bloqueForm.valid || isLoading()"
+      />
+    </div>
+  </form>
+</p-dialog>

@@ -1,0 +1,118 @@
+<div class="horario-container">
+  <p-toast />
+  <p-confirmDialog />
+
+  <p-card>
+    <ng-template pTemplate="header">
+      <div class="card-header">
+        <div class="title-section">
+          <h2>Horario Semanal</h2>
+        </div>
+        <div class="actions-section">
+          <p-dropdown
+            [options]="materias()"
+            [(ngModel)]="selectedMateriaId"
+            (onChange)="onMateriaFilterChange()"
+            optionLabel="nombre"
+            optionValue="id"
+            placeholder="Todas las materias"
+            [showClear]="true"
+            styleClass="filter-dropdown"
+          />
+          <p-button
+            label="Agregar Bloque"
+            icon="pi pi-plus"
+            (onClick)="openCreateDialog()"
+            [disabled]="isLoading()"
+          />
+        </div>
+      </div>
+    </ng-template>
+
+    @if (errorMessage()) {
+      <p-message severity="error" [text]="errorMessage()" styleClass="w-full mb-3" />
+    }
+
+    @if (isLoading()) {
+      <div class="loading-state">
+        <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+        <p>Cargando horario...</p>
+      </div>
+    } @else {
+      <div class="horario-grid">
+        <div class="grid-header">
+          <div class="time-column-header">Hora</div>
+          @for (dia of diasSemana; track dia.value) {
+            <div class="day-header">{{ dia.label }}</div>
+          }
+        </div>
+
+        <div class="grid-body">
+          @for (hora of horasDia; track hora) {
+            <div class="time-cell">{{ hora }}</div>
+            @for (dia of diasSemana; track dia.value) {
+              <div class="schedule-cell">
+                @if (getBloqueForCell(dia.value, hora); as bloque) {
+                  @if (bloque.horaInicio === hora) {
+                    <div
+                      class="bloque-card"
+                      [style.background-color]="bloque.materia.color"
+                      [style.grid-row-end]="'span ' + getBloqueDuration(bloque)"
+                      (click)="openEditDialog(bloque)"
+                    >
+                      <div class="bloque-content">
+                        <div class="materia-nombre">{{ bloque.materia.nombre }}</div>
+                        <div class="bloque-time">
+                          {{ bloque.horaInicio }} - {{ bloque.horaFin }}
+                        </div>
+                        @if (bloque.aula) {
+                          <div class="bloque-aula">
+                            <i class="pi pi-map-marker"></i>
+                            {{ bloque.aula }}
+                          </div>
+                        }
+                      </div>
+                      <button
+                        class="delete-button"
+                        (click)="deleteBloque(bloque); $event.stopPropagation()"
+                        pButton
+                        icon="pi pi-trash"
+                        [rounded]="true"
+                        [text]="true"
+                        severity="danger"
+                        size="small"
+                      ></button>
+                    </div>
+                  }
+                }
+              </div>
+            }
+          }
+        </div>
+      </div>
+
+      @if (filteredBloques().length === 0) {
+        <div class="empty-state">
+          <i class="pi pi-calendar" style="font-size: 3rem; color: var(--text-color-secondary)"></i>
+          <p>No hay bloques en el horario</p>
+          <p-button
+            label="Agregar Primer Bloque"
+            icon="pi pi-plus"
+            (onClick)="openCreateDialog()"
+            [outlined]="true"
+          />
+        </div>
+      }
+    }
+  </p-card>
+</div>
+
+@if (showBloqueForm()) {
+  <app-bloque-form
+    [visible]="showBloqueForm()"
+    [bloque]="selectedBloque()"
+    [materias]="materias()"
+    (onClose)="onBloqueFormClose()"
+    (onSave)="onBloqueSaved()"
+  />
+}

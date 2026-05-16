@@ -27,12 +27,12 @@ export const API_ENDPOINTS = {
     delete: (id: string) => `/api/tareas/${id}`,
     updateStatus: (id: string) => `/api/tareas/${id}/status`,
   },
-  horarios: {
-    getAll: '/api/horarios',
-    getById: (id: string) => `/api/horarios/${id}`,
-    create: '/api/horarios',
-    update: (id: string) => `/api/horarios/${id}`,
-    delete: (id: string) => `/api/horarios/${id}`,
+  horario: {
+    getAll: '/api/horario',
+    getById: (id: string) => `/api/horario/${id}`,
+    create: '/api/horario',
+    update: (id: string) => `/api/horario/${id}`,
+    delete: (id: string) => `/api/horario/${id}`,
   },
   calificaciones: {
     getAll: '/api/calificaciones',
