@@ -31,13 +31,13 @@
 | 03 — Materias | ✅ | 9 / 9 |
 | 04 — Tablero Kanban | ✅ | 11 / 11 |
 | 05 — Horario | ✅ | 8 / 8 |
-| 06 — Temarios | ⬜ | 0 / 9 |
+| 06 — Temarios | ✅ | 9 / 9 |
 | 07 — Calificaciones | ⬜ | 0 / 10 |
 | 08 — Dashboard | ⬜ | 0 / 8 |
 | 09 — Alertas | ⬜ | 0 / 6 |
 | 10 — Documentos (Fase 3) | ⬜ | 0 / 8 |
 
-**Total:** 52 / 93 tareas completadas
+**Total:** 61 / 93 tareas completadas (66%)
 
 ---
 
@@ -168,16 +168,16 @@
 | # | Tarea | Prioridad | Complejidad | Dep. | Estado |
 |---|-------|-----------|-------------|------|--------|
 | **BACKEND** |
-| 06-01 | Entidad `Parcial` (id, número, nombre, fechaExamen, materia_id) | 🟡 Media | 🔷 Baja | 03-01 | ⬜ |
-| 06-02 | Entidad `ItemTemario` (id, tema, subtemas, orden, parcial_id) | 🟡 Media | 🔷 Baja | 06-01 | ⬜ |
-| 06-03 | CRUD `TemarioController` + `TemarioService` | 🟡 Media | 🔶 Media | 06-01, 06-02 | ⬜ |
+| 06-01 | Entidad `Parcial` (id, número, nombre, fechaExamen, materia_id) | 🟡 Media | 🔷 Baja | 03-01 | ✅ |
+| 06-02 | Entidad `ItemTemario` (id, tema, subtemas, orden, parcial_id) | 🟡 Media | 🔷 Baja | 06-01 | ✅ |
+| 06-03 | CRUD `TemarioController` + `TemarioService` | 🟡 Media | 🔶 Media | 06-01, 06-02 | ✅ |
 | **FRONTEND** |
-| 06-04 | `TemarioService` — llamadas HTTP | 🟡 Media | 🔷 Baja | 06-03 | ⬜ |
-| 06-05 | `TemarioComponent` — selector de materia → lista de parciales | 🟡 Media | 🔶 Media | 06-04 | ⬜ |
-| 06-06 | `ParcialFormComponent` — crear parcial con fecha de examen | 🟡 Media | 🔶 Media | 06-04 | ⬜ |
-| 06-07 | `ItemTemarioComponent` — agregar/editar/reordenar temas del parcial | 🟡 Media | 🔶 Media | 06-05 | ⬜ |
-| 06-08 | Indicador visual de parciales completados vs pendientes | 🟡 Media | 🔷 Baja | 06-05 | ⬜ |
-| 06-09 | Ruta lazy-loaded `/temarios` | 🟡 Media | 🔷 Baja | 06-05 | ⬜ |
+| 06-04 | `TemarioService` — llamadas HTTP | 🟡 Media | 🔷 Baja | 06-03 | ✅ |
+| 06-05 | `TemarioComponent` — selector de materia → lista de parciales | 🟡 Media | 🔶 Media | 06-04 | ✅ |
+| 06-06 | `ParcialFormComponent` — crear parcial con fecha de examen | 🟡 Media | 🔶 Media | 06-04 | ✅ |
+| 06-07 | `ItemTemarioComponent` — agregar/editar/reordenar temas del parcial | 🟡 Media | 🔶 Media | 06-05 | ✅ |
+| 06-08 | Indicador visual de parciales completados vs pendientes | 🟡 Media | 🔷 Baja | 06-05 | ✅ |
+| 06-09 | Ruta lazy-loaded `/temarios` | 🟡 Media | 🔷 Baja | 06-05 | ✅ |
 
 ---
 
