@@ -40,6 +40,12 @@ export const routes: Routes = [
       import('./features/horario/horario.routes').then((m) => m.horarioRoutes),
   },
   {
+    path: 'temarios',
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import('./features/temarios/temarios.routes').then((m) => m.temariosRoutes),
+  },
+  {
     path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full',

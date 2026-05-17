@@ -34,6 +34,22 @@ export const API_ENDPOINTS = {
     update: (id: string) => `/api/horario/${id}`,
     delete: (id: string) => `/api/horario/${id}`,
   },
+  temarios: {
+    parciales: {
+      getAll: '/api/temarios/parciales',
+      getById: (id: string) => `/api/temarios/parciales/${id}`,
+      create: '/api/temarios/parciales',
+      update: (id: string) => `/api/temarios/parciales/${id}`,
+      delete: (id: string) => `/api/temarios/parciales/${id}`,
+    },
+    items: {
+      getAll: '/api/temarios/items',
+      getById: (id: string) => `/api/temarios/items/${id}`,
+      create: '/api/temarios/items',
+      update: (id: string) => `/api/temarios/items/${id}`,
+      delete: (id: string) => `/api/temarios/items/${id}`,
+    },
+  },
   calificaciones: {
     getAll: '/api/calificaciones',
     getById: (id: string) => `/api/calificaciones/${id}`,

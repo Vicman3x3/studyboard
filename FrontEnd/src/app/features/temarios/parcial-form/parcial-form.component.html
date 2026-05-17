@@ -1,0 +1,80 @@
+<p-dialog
+  [(visible)]="visible"
+  [header]="parcial ? 'Editar Parcial' : 'Nuevo Parcial'"
+  [modal]="true"
+  [closable]="!isLoading()"
+  [closeOnEscape]="!isLoading()"
+  [draggable]="false"
+  [resizable]="false"
+  styleClass="parcial-dialog"
+  (onHide)="closeDialog()"
+>
+  <form (ngSubmit)="onSubmit()" #parcialForm="ngForm">
+    @if (errorMessage()) {
+      <p-message severity="error" [text]="errorMessage()" styleClass="w-full mb-3" />
+    }
+
+    <div class="form-grid">
+      <div class="field col-12">
+        <label for="numero">Número de parcial *</label>
+        <p-inputNumber
+          [ngModel]="formData().numero"
+          (ngModelChange)="updateFormData('numero', $event)"
+          inputId="numero"
+          name="numero"
+          [min]="1"
+          [max]="10"
+          [showButtons]="true"
+          required
+          styleClass="w-full"
+        />
+      </div>
+
+      <div class="field col-12">
+        <label for="nombre">Nombre del parcial *</label>
+        <input
+          pInputText
+          id="nombre"
+          type="text"
+          [ngModel]="formData().nombre"
+          (ngModelChange)="updateFormData('nombre', $event)"
+          name="nombre"
+          required
+          placeholder="Ej: Primer Parcial, Examen Ordinario"
+          class="w-full"
+        />
+      </div>
+
+      <div class="field col-12">
+        <label for="fechaExamen">Fecha de examen *</label>
+        <p-calendar
+          [ngModel]="formData().fechaExamen"
+          (ngModelChange)="updateFormData('fechaExamen', $event)"
+          inputId="fechaExamen"
+          name="fechaExamen"
+          dateFormat="dd/mm/yy"
+          [showIcon]="true"
+          placeholder="Selecciona fecha"
+          required
+          styleClass="w-full"
+        />
+      </div>
+    </div>
+
+    <div class="dialog-footer">
+      <p-button
+        label="Cancelar"
+        severity="secondary"
+        [text]="true"
+        (onClick)="closeDialog()"
+        [disabled]="isLoading()"
+      />
+      <p-button
+        type="submit"
+        [label]="parcial ? 'Guardar Cambios' : 'Crear Parcial'"
+        [loading]="isLoading()"
+        [disabled]="!parcialForm.valid || isLoading()"
+      />
+    </div>
+  </form>
+</p-dialog>

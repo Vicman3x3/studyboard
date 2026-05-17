@@ -1,0 +1,122 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+
+.items-container {
+  margin-top: 1rem;
+}
+
+.items-header {
+  @include flex-between;
+  margin-bottom: 1.5rem;
+
+  h3 {
+    margin: 0;
+    color: $text-primary;
+    font-size: 1.1rem;
+  }
+}
+
+.item-form {
+  background-color: $background-light;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border: 1px solid $border-color;
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+
+    label {
+      color: $text-primary;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    &:last-of-type {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .form-actions {
+    @include flex-between;
+    gap: 1rem;
+  }
+}
+
+.items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.item-card {
+  background-color: white;
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  padding: 1rem;
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: $shadow-sm;
+  }
+
+  .item-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .item-order {
+      @include flex-center;
+      width: 32px;
+      height: 32px;
+      background-color: $uv-blue;
+      color: white;
+      border-radius: 50%;
+      font-weight: 600;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .item-title {
+      flex: 1;
+      color: $text-primary;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    .item-actions {
+      display: flex;
+      gap: 0.25rem;
+    }
+  }
+
+  .item-subtemas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid $border-color;
+
+    :host ::ng-deep .subtema-chip {
+      background-color: $background-light;
+      color: $text-secondary;
+      font-size: 0.85rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .item-card .item-header {
+    flex-wrap: wrap;
+
+    .item-title {
+      flex-basis: 100%;
+      order: -1;
+      margin-bottom: 0.5rem;
+    }
+  }
+}

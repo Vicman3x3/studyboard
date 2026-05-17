@@ -1,0 +1,119 @@
+<div class="items-container">
+  <p-toast />
+  <p-confirmDialog />
+
+  <div class="items-header">
+    <h3>Temas del temario</h3>
+    @if (!showForm()) {
+      <p-button
+        label="Agregar Tema"
+        icon="pi pi-plus"
+        (onClick)="openCreateForm()"
+        size="small"
+      />
+    }
+  </div>
+
+  @if (showForm()) {
+    <div class="item-form">
+      <div class="field">
+        <label for="tema">Tema *</label>
+        <input
+          pInputText
+          id="tema"
+          type="text"
+          [(ngModel)]="formTema"
+          placeholder="Ej: Ecuaciones diferenciales"
+          class="w-full"
+        />
+      </div>
+
+      <div class="field">
+        <label for="subtemas">Subtemas (uno por línea)</label>
+        <textarea
+          pInputTextarea
+          id="subtemas"
+          [(ngModel)]="formSubtemas"
+          [rows]="4"
+          placeholder="Ej:&#10;- Ecuaciones de primer orden&#10;- Ecuaciones de segundo orden&#10;- Sistemas de ecuaciones"
+          class="w-full"
+        ></textarea>
+      </div>
+
+      <div class="form-actions">
+        <p-button
+          label="Cancelar"
+          severity="secondary"
+          [text]="true"
+          (onClick)="cancelForm()"
+          [disabled]="isLoading()"
+        />
+        <p-button
+          [label]="editingItem() ? 'Guardar Cambios' : 'Agregar Tema'"
+          (onClick)="saveItem()"
+          [loading]="isLoading()"
+        />
+      </div>
+    </div>
+  }
+
+  <div class="items-list">
+    @if (items().length === 0) {
+      <p-message
+        severity="info"
+        text="No hay temas registrados en este parcial"
+        styleClass="w-full"
+      />
+    } @else {
+      @for (item of items(); track item.id; let index = $index) {
+        <div class="item-card">
+          <div class="item-header">
+            <div class="item-order">{{ index + 1 }}</div>
+            <div class="item-title">{{ item.tema }}</div>
+            <div class="item-actions">
+              <p-button
+                icon="pi pi-arrow-up"
+                [disabled]="index === 0"
+                (onClick)="moveItem(item, 'up')"
+                [text]="true"
+                [rounded]="true"
+                size="small"
+              />
+              <p-button
+                icon="pi pi-arrow-down"
+                [disabled]="index === items().length - 1"
+                (onClick)="moveItem(item, 'down')"
+                [text]="true"
+                [rounded]="true"
+                size="small"
+              />
+              <p-button
+                icon="pi pi-pencil"
+                (onClick)="openEditForm(item)"
+                [text]="true"
+                [rounded]="true"
+                size="small"
+              />
+              <p-button
+                icon="pi pi-trash"
+                (onClick)="deleteItem(item)"
+                severity="danger"
+                [text]="true"
+                [rounded]="true"
+                size="small"
+              />
+            </div>
+          </div>
+
+          @if (item.subtemas && item.subtemas.length > 0) {
+            <div class="item-subtemas">
+              @for (subtema of item.subtemas; track subtema) {
+                <p-chip [label]="subtema" styleClass="subtema-chip" />
+              }
+            </div>
+          }
+        </div>
+      }
+    }
+  </div>
+</div>

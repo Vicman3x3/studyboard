@@ -1,0 +1,101 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/mixins';
+
+.temario-container {
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card-header {
+  @include flex-between;
+  padding: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  .title-section h2 {
+    margin: 0;
+    color: $text-primary;
+  }
+
+  .actions-section {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    :host ::ng-deep .materia-dropdown {
+      min-width: 250px;
+    }
+  }
+}
+
+.loading-state,
+.empty-state {
+  @include flex-center;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 3rem;
+  color: $text-secondary;
+}
+
+.parciales-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  :host ::ng-deep .p-panel {
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    overflow: hidden;
+
+    .p-panel-header {
+      background-color: $background-light;
+      border-bottom: 1px solid $border-color;
+      padding: 1rem 1.5rem;
+    }
+
+    .p-panel-content {
+      padding: 1.5rem;
+    }
+  }
+}
+
+.parcial-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid $border-color;
+
+  .info-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: $text-secondary;
+
+    i {
+      color: $uv-blue;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .temario-container {
+    padding: 1rem;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: stretch;
+
+    .actions-section {
+      flex-direction: column;
+
+      :host ::ng-deep .materia-dropdown {
+        width: 100%;
+      }
+    }
+  }
+}

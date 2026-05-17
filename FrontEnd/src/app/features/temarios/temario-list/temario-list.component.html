@@ -1,0 +1,125 @@
+<div class="temario-container">
+  <p-toast />
+  <p-confirmDialog />
+
+  <p-card>
+    <ng-template pTemplate="header">
+      <div class="card-header">
+        <div class="title-section">
+          <h2>Temarios</h2>
+        </div>
+        <div class="actions-section">
+          <p-dropdown
+            [options]="materias()"
+            [(ngModel)]="selectedMateriaId"
+            (onChange)="onMateriaChange()"
+            optionLabel="nombre"
+            optionValue="id"
+            placeholder="Selecciona una materia"
+            [showClear]="false"
+            styleClass="materia-dropdown"
+          />
+          <p-button
+            label="Agregar Parcial"
+            icon="pi pi-plus"
+            (onClick)="openCreateDialog()"
+            [disabled]="!selectedMateriaId() || isLoading()"
+          />
+        </div>
+      </div>
+    </ng-template>
+
+    @if (errorMessage()) {
+      <p-message severity="error" [text]="errorMessage()" styleClass="w-full mb-3" />
+    }
+
+    @if (isLoading()) {
+      <div class="loading-state">
+        <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+        <p>Cargando parciales...</p>
+      </div>
+    } @else if (!selectedMateriaId()) {
+      <div class="empty-state">
+        <i class="pi pi-book" style="font-size: 3rem; color: var(--text-color-secondary)"></i>
+        <p>Selecciona una materia para ver sus parciales</p>
+      </div>
+    } @else {
+      <div class="parciales-grid">
+        @for (parcial of parciales(); track parcial.id) {
+          <p-panel
+            [header]="'Parcial ' + parcial.numero + ' - ' + parcial.nombre"
+            [toggleable]="true"
+            [collapsed]="selectedParcialForItems()?.id !== parcial.id"
+            (collapsedChange)="selectParcial(parcial)"
+          >
+            <ng-template pTemplate="icons">
+              <button
+                class="p-panel-header-icon p-link"
+                (click)="openEditDialog(parcial); $event.stopPropagation()"
+                pButton
+                icon="pi pi-pencil"
+                [text]="true"
+                [rounded]="true"
+              ></button>
+              <button
+                class="p-panel-header-icon p-link"
+                (click)="deleteParcial(parcial); $event.stopPropagation()"
+                pButton
+                icon="pi pi-trash"
+                [text]="true"
+                [rounded]="true"
+                severity="danger"
+              ></button>
+            </ng-template>
+
+            <div class="parcial-info">
+              <div class="info-row">
+                <i class="pi pi-calendar"></i>
+                <span>Fecha de examen: {{ formatDate(parcial.fechaExamen) }}</span>
+                @if (isParcialPassed(parcial.fechaExamen)) {
+                  <p-tag value="Pasado" severity="secondary" />
+                } @else {
+                  <p-tag value="Próximo" severity="info" />
+                }
+              </div>
+              <div class="info-row">
+                <i class="pi pi-list"></i>
+                <span>{{ parcial.items.length }} tema(s) registrado(s)</span>
+              </div>
+            </div>
+
+            @if (selectedParcialForItems()?.id === parcial.id) {
+              <app-item-temario-list
+                [parcial]="parcial"
+                (onItemsUpdated)="loadParciales()"
+              />
+            }
+          </p-panel>
+        }
+      </div>
+
+      @if (parciales().length === 0) {
+        <div class="empty-state">
+          <i class="pi pi-book" style="font-size: 3rem; color: var(--text-color-secondary)"></i>
+          <p>No hay parciales registrados para esta materia</p>
+          <p-button
+            label="Agregar Primer Parcial"
+            icon="pi pi-plus"
+            (onClick)="openCreateDialog()"
+            [outlined]="true"
+          />
+        </div>
+      }
+    }
+  </p-card>
+</div>
+
+@if (showParcialForm()) {
+  <app-parcial-form
+    [visible]="showParcialForm()"
+    [parcial]="selectedParcial()"
+    [materiaId]="selectedMateriaId()"
+    (onClose)="onParcialFormClose()"
+    (onSave)="onParcialSaved()"
+  />
+}
