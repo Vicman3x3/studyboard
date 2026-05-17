@@ -1,0 +1,299 @@
+<div class="calificaciones-container">
+  <p-toast />
+  <p-confirmDialog />
+
+  <p-card>
+    <ng-template pTemplate="header">
+      <div class="card-header">
+        <div class="title-section">
+          <h2>Calificaciones</h2>
+        </div>
+        <div class="actions-section">
+          <p-dropdown
+            [options]="materias()"
+            [(ngModel)]="selectedMateriaId"
+            (onChange)="onMateriaChange()"
+            optionLabel="nombre"
+            optionValue="id"
+            placeholder="Selecciona una materia"
+            [showClear]="false"
+            styleClass="materia-dropdown"
+          />
+        </div>
+      </div>
+    </ng-template>
+
+    @if (!selectedMateriaId()) {
+      <div class="empty-state">
+        <i class="pi pi-chart-line" style="font-size: 3rem; color: var(--text-color-secondary)"></i>
+        <p>Selecciona una materia para gestionar sus calificaciones</p>
+      </div>
+    } @else {
+      <!-- Resumen y Proyección -->
+      <div class="summary-section">
+        <div class="summary-card promedio-card">
+          <div class="summary-icon">
+            <i class="pi pi-chart-bar"></i>
+          </div>
+          <div class="summary-content">
+            <span class="summary-label">Promedio General</span>
+            <span class="summary-value" [class]="'value-' + getSeverityByNota(promedio())">
+              {{ promedio().toFixed(2) }}
+            </span>
+          </div>
+        </div>
+
+        @if (proyeccion()) {
+          <div class="summary-card proyeccion-card">
+            <div class="summary-icon">
+              <i class="pi pi-calculator"></i>
+            </div>
+            <div class="summary-content">
+              <span class="summary-label">Nota Necesaria (para 70)</span>
+              <span class="summary-value" [class]="'value-' + (proyeccion()!.esPosible ? 'success' : 'danger')">
+                {{ proyeccion()!.notaNecesaria.toFixed(2) }}
+              </span>
+              @if (!proyeccion()!.esPosible) {
+                <p-tag value="No alcanzable" severity="danger" styleClass="mt-2" />
+              }
+            </div>
+          </div>
+        }
+
+        <div class="summary-card ponderacion-card">
+          <div class="summary-icon">
+            <i class="pi pi-percentage"></i>
+          </div>
+          <div class="summary-content">
+            <span class="summary-label">Ponderación Total</span>
+            <span class="summary-value" [class]="totalPonderacion() === 100 ? 'value-success' : 'value-warning'">
+              {{ totalPonderacion() }}%
+            </span>
+            <p-progressBar [value]="totalPonderacion()" [showValue]="false" styleClass="mt-2" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Criterios de Evaluación -->
+      <div class="section-header">
+        <h3>Criterios de Evaluación</h3>
+        <p-button
+          label="Agregar Criterio"
+          icon="pi pi-plus"
+          (onClick)="openCriterioDialog()"
+          size="small"
+        />
+      </div>
+
+      @if (criterios().length === 0) {
+        <p-message
+          severity="info"
+          text="No hay criterios definidos. Agrega criterios para comenzar a registrar calificaciones."
+          styleClass="w-full mb-3"
+        />
+      } @else {
+        <div class="criterios-grid">
+          @for (criterio of criterios(); track criterio.id) {
+            <div class="criterio-card">
+              <div class="criterio-header">
+                <span class="criterio-nombre">{{ criterio.nombre }}</span>
+                <span class="criterio-ponderacion">{{ criterio.ponderacion }}%</span>
+              </div>
+              <div class="criterio-stats">
+                <span class="stat-label">Promedio:</span>
+                <span class="stat-value">{{ getPromedioCriterio(criterio.id).toFixed(2) }}</span>
+                <span class="stat-label">Calificaciones:</span>
+                <span class="stat-value">{{ getCalificacionesPorCriterio(criterio.id).length }}</span>
+              </div>
+              <div class="criterio-actions">
+                <p-button
+                  icon="pi pi-plus"
+                  (onClick)="openCalificacionDialog()"
+                  [text]="true"
+                  [rounded]="true"
+                  size="small"
+                  pTooltip="Agregar calificación"
+                />
+                <p-button
+                  icon="pi pi-pencil"
+                  (onClick)="openCriterioDialog(criterio)"
+                  [text]="true"
+                  [rounded]="true"
+                  size="small"
+                />
+                <p-button
+                  icon="pi pi-trash"
+                  (onClick)="deleteCriterio(criterio)"
+                  severity="danger"
+                  [text]="true"
+                  [rounded]="true"
+                  size="small"
+                />
+              </div>
+            </div>
+          }
+        </div>
+
+        <!-- Tabla de Calificaciones -->
+        <div class="section-header">
+          <h3>Registro de Calificaciones</h3>
+          <p-button
+            label="Agregar Calificación"
+            icon="pi pi-plus"
+            (onClick)="openCalificacionDialog()"
+            size="small"
+          />
+        </div>
+
+        <p-table [value]="calificaciones()" styleClass="p-datatable-sm">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Criterio</th>
+              <th>Parcial</th>
+              <th>Valor</th>
+              <th>Fecha</th>
+              <th>Acciones</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-calificacion>
+            <tr>
+              <td>{{ calificacion.criterio.nombre }}</td>
+              <td>{{ calificacion.parcial.nombre }}</td>
+              <td>
+                <p-tag
+                  [value]="calificacion.valor.toString()"
+                  [severity]="getSeverityByNota(calificacion.valor)"
+                />
+              </td>
+              <td>{{ calificacion.createdAt | date: 'dd/MM/yyyy' }}</td>
+              <td>
+                <p-button
+                  icon="pi pi-pencil"
+                  (onClick)="openCalificacionDialog(calificacion)"
+                  [text]="true"
+                  [rounded]="true"
+                  size="small"
+                />
+                <p-button
+                  icon="pi pi-trash"
+                  (onClick)="deleteCalificacion(calificacion)"
+                  severity="danger"
+                  [text]="true"
+                  [rounded]="true"
+                  size="small"
+                />
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="5" class="text-center">No hay calificaciones registradas</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      }
+    }
+  </p-card>
+</div>
+
+<!-- Dialog Criterio -->
+<p-dialog
+  [(visible)]="showCriterioDialog"
+  [header]="editingCriterio() ? 'Editar Criterio' : 'Nuevo Criterio'"
+  [modal]="true"
+  styleClass="criterio-dialog"
+>
+  <div class="dialog-content">
+    <div class="field">
+      <label>Nombre del Criterio *</label>
+      <input
+        pInputText
+        [(ngModel)]="criterioForm().nombre"
+        placeholder="Ej: Exámenes Parciales"
+        class="w-full"
+      />
+    </div>
+    <div class="field">
+      <label>Ponderación (%) *</label>
+      <p-inputNumber
+        [(ngModel)]="criterioForm().ponderacion"
+        [min]="0"
+        [max]="100"
+        [showButtons]="true"
+        styleClass="w-full"
+      />
+      <small>Restante: {{ 100 - totalPonderacion() + (editingCriterio()?.ponderacion || 0) }}%</small>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button
+      label="Cancelar"
+      severity="secondary"
+      [text]="true"
+      (onClick)="showCriterioDialog.set(false)"
+    />
+    <p-button
+      [label]="editingCriterio() ? 'Guardar' : 'Crear'"
+      (onClick)="saveCriterio()"
+      [loading]="isLoading()"
+    />
+  </ng-template>
+</p-dialog>
+
+<!-- Dialog Calificación -->
+<p-dialog
+  [(visible)]="showCalificacionDialog"
+  [header]="editingCalificacion() ? 'Editar Calificación' : 'Nueva Calificación'"
+  [modal]="true"
+  styleClass="calificacion-dialog"
+>
+  <div class="dialog-content">
+    <div class="field">
+      <label>Criterio *</label>
+      <p-dropdown
+        [options]="criterios()"
+        [(ngModel)]="calificacionForm().criterioId"
+        optionLabel="nombre"
+        optionValue="id"
+        placeholder="Selecciona criterio"
+        styleClass="w-full"
+      />
+    </div>
+    <div class="field">
+      <label>Parcial *</label>
+      <p-dropdown
+        [options]="parciales()"
+        [(ngModel)]="calificacionForm().parcialId"
+        optionLabel="nombre"
+        optionValue="id"
+        placeholder="Selecciona parcial"
+        styleClass="w-full"
+      />
+    </div>
+    <div class="field">
+      <label>Calificación *</label>
+      <p-inputNumber
+        [(ngModel)]="calificacionForm().valor"
+        [min]="0"
+        [max]="100"
+        [minFractionDigits]="0"
+        [maxFractionDigits]="2"
+        [showButtons]="true"
+        styleClass="w-full"
+      />
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <p-button
+      label="Cancelar"
+      severity="secondary"
+      [text]="true"
+      (onClick)="showCalificacionDialog.set(false)"
+    />
+    <p-button
+      [label]="editingCalificacion() ? 'Guardar' : 'Crear'"
+      (onClick)="saveCalificacion()"
+      [loading]="isLoading()"
+    />
+  </ng-template>
+</p-dialog>

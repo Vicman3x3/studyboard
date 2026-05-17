@@ -46,6 +46,12 @@ export const routes: Routes = [
       import('./features/temarios/temarios.routes').then((m) => m.temariosRoutes),
   },
   {
+    path: 'calificaciones',
+    canActivate: [authGuard],
+    loadChildren: () =>
+      import('./features/calificaciones/calificaciones.routes').then((m) => m.calificacionesRoutes),
+  },
+  {
     path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full',

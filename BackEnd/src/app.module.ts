@@ -9,6 +9,7 @@ import { TareasModule } from './tareas/tareas.module';
 import { SemestresModule } from './semestres/semestres.module';
 import { HorarioModule } from './horario/horario.module';
 import { TemarioModule } from './temarios/temario.module';
+import { CalificacionesModule } from './calificaciones/calificaciones.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { TemarioModule } from './temarios/temario.module';
     TareasModule,
     HorarioModule,
     TemarioModule,
+    CalificacionesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

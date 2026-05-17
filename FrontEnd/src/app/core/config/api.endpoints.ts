@@ -51,12 +51,20 @@ export const API_ENDPOINTS = {
     },
   },
   calificaciones: {
+    criterios: {
+      getAll: '/api/calificaciones/criterios',
+      getById: (id: string) => `/api/calificaciones/criterios/${id}`,
+      create: '/api/calificaciones/criterios',
+      update: (id: string) => `/api/calificaciones/criterios/${id}`,
+      delete: (id: string) => `/api/calificaciones/criterios/${id}`,
+    },
     getAll: '/api/calificaciones',
     getById: (id: string) => `/api/calificaciones/${id}`,
-    getByMateria: (materiaId: string) => `/api/calificaciones/materia/${materiaId}`,
     create: '/api/calificaciones',
     update: (id: string) => `/api/calificaciones/${id}`,
     delete: (id: string) => `/api/calificaciones/${id}`,
+    promedio: (materiaId: string) => `/api/calificaciones/promedio/${materiaId}`,
+    proyeccion: (materiaId: string) => `/api/calificaciones/proyeccion/${materiaId}`,
   },
   apuntes: {
     getAll: '/api/apuntes',
