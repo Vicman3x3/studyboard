@@ -32,12 +32,12 @@
 | 04 — Tablero Kanban | ✅ | 11 / 11 |
 | 05 — Horario | ✅ | 8 / 8 |
 | 06 — Temarios | ✅ | 9 / 9 |
-| 07 — Calificaciones | ⬜ | 0 / 10 |
+| 07 — Calificaciones | ✅ | 10 / 10 |
 | 08 — Dashboard | ⬜ | 0 / 8 |
 | 09 — Alertas | ⬜ | 0 / 6 |
 | 10 — Documentos (Fase 3) | ⬜ | 0 / 8 |
 
-**Total:** 61 / 93 tareas completadas (66%)
+**Total:** 71 / 93 tareas completadas (76%)
 
 ---
 
@@ -188,17 +188,17 @@
 | # | Tarea | Prioridad | Complejidad | Dep. | Estado |
 |---|-------|-----------|-------------|------|--------|
 | **BACKEND** |
-| 07-01 | Entidad `CriterioEvaluacion` (id, nombre, ponderacion, materia_id) | 🟡 Media | 🔷 Baja | 03-01 | ⬜ |
-| 07-02 | Entidad `Calificacion` (id, valor, criterio_id, parcial_id) | 🟡 Media | 🔷 Baja | 07-01, 06-01 | ⬜ |
-| 07-03 | CRUD `CalificacionesController` + `CalificacionesService` | 🟡 Media | 🔶 Media | 07-01, 07-02 | ⬜ |
-| 07-04 | Endpoint `GET /calificaciones/promedio/:materia_id` — promedio ponderado | 🟡 Media | 🔶 Media | 07-03 | ⬜ |
-| 07-05 | Endpoint `GET /calificaciones/proyeccion/:materia_id` — nota mínima necesaria | 🟡 Media | ⚡ Alta | 07-04 | ⬜ |
+| 07-01 | Entidad `CriterioEvaluacion` (id, nombre, ponderacion, materia_id) | 🟡 Media | 🔷 Baja | 03-01 | ✅ |
+| 07-02 | Entidad `Calificacion` (id, valor, criterio_id, parcial_id) | 🟡 Media | 🔷 Baja | 07-01, 06-01 | ✅ |
+| 07-03 | CRUD `CalificacionesController` + `CalificacionesService` | 🟡 Media | 🔶 Media | 07-01, 07-02 | ✅ |
+| 07-04 | Endpoint `GET /calificaciones/promedio/:materia_id` — promedio ponderado | 🟡 Media | 🔶 Media | 07-03 | ✅ |
+| 07-05 | Endpoint `GET /calificaciones/proyeccion/:materia_id` — nota mínima necesaria | 🟡 Media | ⚡ Alta | 07-04 | ✅ |
 | **FRONTEND** |
-| 07-06 | `CalificacionesService` — llamadas HTTP | 🟡 Media | 🔷 Baja | 07-03 | ⬜ |
-| 07-07 | `CriteriosComponent` — definir ponderaciones por materia | 🟡 Media | 🔶 Media | 07-06 | ⬜ |
-| 07-08 | `CalificacionesTablaComponent` — tabla por materia con valores y promedio | 🟡 Media | 🔶 Media | 07-06 | ⬜ |
-| 07-09 | `ProyeccionComponent` — muestra nota mínima necesaria con barra de progreso | 🟡 Media | 🔶 Media | 07-07 | ⬜ |
-| 07-10 | Ruta lazy-loaded `/calificaciones` | 🟡 Media | 🔷 Baja | 07-08 | ⬜ |
+| 07-06 | `CalificacionesService` — llamadas HTTP | 🟡 Media | 🔷 Baja | 07-03 | ✅ |
+| 07-07 | `CriteriosComponent` — definir ponderaciones por materia | 🟡 Media | 🔶 Media | 07-06 | ✅ |
+| 07-08 | `CalificacionesTablaComponent` — tabla por materia con valores y promedio | 🟡 Media | 🔶 Media | 07-06 | ✅ |
+| 07-09 | `ProyeccionComponent` — muestra nota mínima necesaria con barra de progreso | 🟡 Media | 🔶 Media | 07-07 | ✅ |
+| 07-10 | Ruta lazy-loaded `/calificaciones` | 🟡 Media | 🔷 Baja | 07-08 | ✅ |
 
 ---
 
