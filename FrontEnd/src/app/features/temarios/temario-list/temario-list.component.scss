@@ -81,6 +81,18 @@
   }
 }
 
+.parcial-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.documentos-section {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $border-color;
+}
+
 @media (max-width: 768px) {
   .temario-container {
     padding: 1rem;

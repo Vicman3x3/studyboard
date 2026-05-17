@@ -35,9 +35,9 @@
 | 07 — Calificaciones | ✅ | 10 / 10 |
 | 08 — Dashboard | ✅ | 8 / 8 |
 | 09 — Alertas | ✅ | 6 / 6 |
-| 10 — Documentos (Fase 3) | ⬜ | 0 / 8 |
+| 10 — Documentos (Fase 3) | ✅ | 8 / 8 |
 
-**Total:** 85 / 93 tareas completadas (91%)
+**Total:** 93 / 93 tareas completadas (100%)
 
 ---
 
@@ -245,12 +245,15 @@
 | # | Tarea | Prioridad | Complejidad | Dep. | Estado |
 |---|-------|-----------|-------------|------|--------|
 | **BACKEND** |
-| 10-01 | Configurar `multer` en NestJS para subida de archivos | 🟢 Baja | 🔶 Media | 00-04 | ⬜ |
-| 10-02 | Entidad `Documento` (id, nombre, url, tipo, tamaño, referencia_tipo, referencia_id) | 🟢 Baja | 🔷 Baja | 10-01 | ⬜ |
-| 10-03 | Endpoints `POST /documentos/upload` y `GET /documentos/:id` | 🟢 Baja | 🔶 Media | 10-02 | ⬜ |
-| 10-04 | Servir archivos estáticos desde `backend/uploads/` | 🟢 Baja | 🔷 Baja | 10-03 | ⬜ |
+| 10-01 | Configurar `multer` en NestJS para subida de archivos | 🟢 Baja | 🔶 Media | 00-04 | ✅ |
+| 10-02 | Entidad `Documento` (id, nombre, url, tipo, tamaño, referencia_tipo, referencia_id) | 🟢 Baja | 🔷 Baja | 10-01 | ✅ |
+| 10-03 | Endpoints `POST /documentos/upload` y `GET /documentos/:id` | 🟢 Baja | 🔶 Media | 10-02 | ✅ |
+| 10-04 | Servir archivos estáticos desde `backend/uploads/` | 🟢 Baja | 🔷 Baja | 10-03 | ✅ |
 | **FRONTEND** |
-| 10-05 | `DocumentosService` — subida y descarga | 🟢 Baja | 🔶 Media | 10-03 | ⬜ |
+| 10-05 | `DocumentosService` — subida y descarga | 🟢 Baja | 🔶 Media | 10-03 | ✅ |
+| 10-06 | `FileUploaderComponent` — componente reutilizable con PrimeNG FileUpload | 🟢 Baja | 🔶 Media | 10-05 | ✅ |
+| 10-07 | Integrar uploader en `DetalleMateriaComponent` (por parcial) | 🟢 Baja | 🔶 Media | 10-06 | ✅ |
+| 10-08 | Integrar uploader en `TareaFormComponent` (adjuntos por tarea) | 🟢 Baja | 🔶 Media | 10-06 | ✅ |
 | 10-06 | `FileUploaderComponent` — componente reutilizable con PrimeNG FileUpload | 🟢 Baja | 🔶 Media | 10-05 | ⬜ |
 | 10-07 | Integrar uploader en `DetalleMateriaComponent` (por parcial) | 🟢 Baja | 🔶 Media | 10-06 | ⬜ |
 | 10-08 | Integrar uploader en `TareaFormComponent` (adjuntos por tarea) | 🟢 Baja | 🔶 Media | 10-06 | ⬜ |

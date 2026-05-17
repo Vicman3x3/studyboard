@@ -16,6 +16,7 @@ import { PanelModule } from 'primeng/panel';
 import { TagModule } from 'primeng/tag';
 import { ParcialFormComponent } from '../parcial-form/parcial-form.component';
 import { ItemTemarioListComponent } from '../item-temario-list/item-temario-list.component';
+import { FileUploaderComponent } from '../../documentos/file-uploader/file-uploader.component';
 
 @Component({
   selector: 'app-temario-list',
@@ -33,6 +34,7 @@ import { ItemTemarioListComponent } from '../item-temario-list/item-temario-list
     TagModule,
     ParcialFormComponent,
     ItemTemarioListComponent,
+    FileUploaderComponent,
   ],
   providers: [ConfirmationService, MessageService],
   templateUrl: './temario-list.component.html',

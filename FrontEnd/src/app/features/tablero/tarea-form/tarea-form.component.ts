@@ -17,6 +17,7 @@ import { DialogModule } from 'primeng/dialog';
 import { MessageModule } from 'primeng/message';
 import { HttpService } from '../../../core/services/http.service';
 import { API_ENDPOINTS } from '../../../core/config/api.endpoints';
+import { FileUploaderComponent } from '../../documentos/file-uploader/file-uploader.component';
 import {
   Tarea,
   CreateTareaRequest,
@@ -39,6 +40,7 @@ import { Materia } from '../../../core/models/materia.model';
     CalendarModule,
     DialogModule,
     MessageModule,
+    FileUploaderComponent,
   ],
   templateUrl: './tarea-form.component.html',
   styleUrl: './tarea-form.component.scss',

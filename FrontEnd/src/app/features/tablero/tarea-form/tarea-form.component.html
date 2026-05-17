@@ -89,6 +89,16 @@
       </div>
     </div>
 
+    @if (tarea) {
+      <div class="documentos-section">
+        <app-file-uploader
+          [titulo]="'Archivos adjuntos'"
+          [tipoReferencia]="'tarea'"
+          [referenciaId]="tarea.id"
+        />
+      </div>
+    }
+
     <div class="dialog-footer">
       <p-button
         label="Cancelar"

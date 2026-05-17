@@ -12,6 +12,7 @@ import { TemarioModule } from './temarios/temario.module';
 import { CalificacionesModule } from './calificaciones/calificaciones.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { AlertasModule } from './alertas/alertas.module';
+import { DocumentosModule } from './documentos/documentos.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { AlertasModule } from './alertas/alertas.module';
     CalificacionesModule,
     DashboardModule,
     AlertasModule,
+    DocumentosModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -89,10 +89,20 @@
             </div>
 
             @if (selectedParcialForItems()?.id === parcial.id) {
-              <app-item-temario-list
-                [parcial]="parcial"
-                (onItemsUpdated)="loadParciales()"
-              />
+              <div class="parcial-content">
+                <app-item-temario-list
+                  [parcial]="parcial"
+                  (onItemsUpdated)="loadParciales()"
+                />
+
+                <div class="documentos-section">
+                  <app-file-uploader
+                    [titulo]="'Documentos del parcial'"
+                    [tipoReferencia]="'parcial'"
+                    [referenciaId]="parcial.id"
+                  />
+                </div>
+              </div>
             }
           </p-panel>
         }

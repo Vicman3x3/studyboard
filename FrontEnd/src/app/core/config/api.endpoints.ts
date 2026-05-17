@@ -83,4 +83,12 @@ export const API_ENDPOINTS = {
     contarNoLeidas: '/api/alertas/contar-no-leidas',
     marcarLeida: (id: string) => `/api/alertas/marcar-leida/${id}`,
   },
+  documentos: {
+    upload: '/api/documentos/upload',
+    getAll: '/api/documentos',
+    getById: (id: string) => `/api/documentos/${id}`,
+    getByReferencia: (tipo: string, id: string) => `/api/documentos/referencia?tipo=${tipo}&id=${id}`,
+    download: (id: string) => `/api/documentos/download/${id}`,
+    delete: (id: string) => `/api/documentos/${id}`,
+  },
 } as const;
