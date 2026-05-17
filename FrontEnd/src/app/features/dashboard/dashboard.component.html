@@ -1,34 +1,178 @@
 <div class="dashboard-container">
-  <div class="header">
-    <h1>StudyBoard</h1>
-    <div class="user-info">
-      @if (currentUser(); as user) {
-        <span class="user-name">{{ user.name }}</span>
-        <p-button
-          label="Cerrar Sesión"
-          icon="pi pi-sign-out"
-          severity="secondary"
-          (onClick)="logout()"
-        />
-      }
+  <div class="dashboard-header">
+    <div class="welcome-section">
+      <h1>¡Hola, {{ currentUser()?.nombre }}! 👋</h1>
+      <p class="welcome-text">Bienvenido a tu espacio de estudio</p>
     </div>
+    <p-button
+      label="Cerrar Sesión"
+      icon="pi pi-sign-out"
+      severity="secondary"
+      [outlined]="true"
+      (onClick)="logout()"
+    />
   </div>
 
-  <div class="content">
-    <p-card>
-      <ng-template pTemplate="header">
-        <h2>Bienvenido a StudyBoard</h2>
-      </ng-template>
+  @if (isLoading()) {
+    <div class="loading-state">
+      <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+      <p>Cargando información...</p>
+    </div>
+  } @else {
+    <!-- Resumen de Métricas -->
+    @if (resumen()) {
+      <div class="metrics-section">
+        <p-card styleClass="metric-card promedio-card">
+          <div class="metric-content">
+            <div class="metric-icon">
+              <i class="pi pi-chart-bar"></i>
+            </div>
+            <div class="metric-info">
+              <span class="metric-label">Promedio General</span>
+              <span class="metric-value">{{ resumen()!.promedioGeneral.toFixed(2) }}</span>
+            </div>
+          </div>
+        </p-card>
 
-      <p>Dashboard en construcción. Sistema de autenticación funcionando correctamente.</p>
+        <p-card styleClass="metric-card materias-card">
+          <div class="metric-content">
+            <div class="metric-icon">
+              <i class="pi pi-book"></i>
+            </div>
+            <div class="metric-info">
+              <span class="metric-label">Materias Activas</span>
+              <span class="metric-value">{{ resumen()!.totalMaterias }}</span>
+            </div>
+          </div>
+        </p-card>
 
-      @if (currentUser(); as user) {
-        <div class="user-details">
-          <p><strong>Usuario:</strong> {{ user.name }}</p>
-          <p><strong>Email:</strong> {{ user.email }}</p>
-          <p><strong>ID:</strong> {{ user.id }}</p>
+        <p-card styleClass="metric-card tareas-card">
+          <div class="metric-content">
+            <div class="metric-icon">
+              <i class="pi pi-check-circle"></i>
+            </div>
+            <div class="metric-info">
+              <span class="metric-label">Tareas Completadas</span>
+              <span class="metric-value">
+                {{ resumen()!.tareasCompletadas }} / {{ resumen()!.totalTareas }}
+              </span>
+            </div>
+          </div>
+          <p-progressBar
+            [value]="resumen()!.porcentajeCompletado"
+            [showValue]="false"
+            styleClass="mt-3"
+          />
+        </p-card>
+
+        <p-card styleClass="metric-card proximas-card">
+          <div class="metric-content">
+            <div class="metric-icon">
+              <i class="pi pi-clock"></i>
+            </div>
+            <div class="metric-info">
+              <span class="metric-label">Entregas Próximas</span>
+              <span class="metric-value">{{ resumen()!.tareasProximas }}</span>
+              <span class="metric-sublabel">En los próximos 7 días</span>
+            </div>
+          </div>
+        </p-card>
+      </div>
+    }
+
+    <div class="dashboard-grid">
+      <!-- Widget: ¿Qué quieres hacer hoy? -->
+      <p-card styleClass="accesos-widget">
+        <ng-template pTemplate="header">
+          <div class="widget-header">
+            <h3>¿Qué quieres hacer hoy?</h3>
+          </div>
+        </ng-template>
+
+        <div class="accesos-grid">
+          @for (acceso of accesosRapidos; track acceso.ruta) {
+            <div
+              class="acceso-card"
+              (click)="navigateTo(acceso.ruta)"
+              [style.border-left-color]="acceso.color"
+            >
+              <i [class]="acceso.icono" [style.color]="acceso.color"></i>
+              <div class="acceso-info">
+                <h4>{{ acceso.titulo }}</h4>
+                <p>{{ acceso.descripcion }}</p>
+              </div>
+            </div>
+          }
         </div>
-      }
-    </p-card>
-  </div>
+      </p-card>
+
+      <!-- Widget: Próximas Entregas -->
+      <p-card styleClass="entregas-widget">
+        <ng-template pTemplate="header">
+          <div class="widget-header">
+            <h3>Próximas Entregas</h3>
+            @if (proximasEntregas().length > 0) {
+              <p-button
+                label="Ver Tablero"
+                icon="pi pi-arrow-right"
+                [text]="true"
+                (onClick)="navigateTo('/tablero')"
+                size="small"
+              />
+            }
+          </div>
+        </ng-template>
+
+        @if (proximasEntregas().length === 0) {
+          <p-message
+            severity="info"
+            text="¡Felicidades! No tienes entregas pendientes próximas"
+            styleClass="w-full"
+          />
+        } @else {
+          <div class="entregas-list">
+            @for (tarea of proximasEntregas(); track tarea.id) {
+              <div class="entrega-item" [class.overdue]="isOverdue(tarea.fechaEntrega)">
+                <div class="entrega-marker" [style.background-color]="tarea.materia.color"></div>
+                <div class="entrega-content">
+                  <div class="entrega-header">
+                    <h4>{{ tarea.titulo }}</h4>
+                    @if (isPrioridad(tarea.prioridad)) {
+                      <p-tag value="Urgente" severity="danger" />
+                    }
+                  </div>
+                  <p class="entrega-materia">{{ tarea.materia.nombre }}</p>
+                  <div class="entrega-footer">
+                    <span class="entrega-fecha">
+                      <i class="pi pi-calendar"></i>
+                      {{ formatDate(tarea.fechaEntrega) }}
+                    </span>
+                    @if (isOverdue(tarea.fechaEntrega)) {
+                      <p-tag value="Retrasada" severity="danger" />
+                    }
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </p-card>
+    </div>
+
+    <!-- Onboarding para usuario nuevo -->
+    @if (resumen() && resumen()!.totalMaterias === 0) {
+      <p-card styleClass="onboarding-card">
+        <div class="onboarding-content">
+          <i class="pi pi-info-circle" style="font-size: 3rem; color: var(--primary-color)"></i>
+          <h3>¡Comienza tu organización!</h3>
+          <p>Parece que aún no tienes materias registradas. ¡Empieza agregando tus primeras materias!</p>
+          <p-button
+            label="Agregar Primera Materia"
+            icon="pi pi-plus"
+            (onClick)="navigateTo('/materias')"
+          />
+        </div>
+      </p-card>
+    }
+  }
 </div>

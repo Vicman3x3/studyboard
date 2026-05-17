@@ -10,6 +10,7 @@ import { SemestresModule } from './semestres/semestres.module';
 import { HorarioModule } from './horario/horario.module';
 import { TemarioModule } from './temarios/temario.module';
 import { CalificacionesModule } from './calificaciones/calificaciones.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { CalificacionesModule } from './calificaciones/calificaciones.module';
     HorarioModule,
     TemarioModule,
     CalificacionesModule,
+    DashboardModule,
   ],
   controllers: [AppController],
   providers: [AppService],

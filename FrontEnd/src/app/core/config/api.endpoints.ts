@@ -75,7 +75,7 @@ export const API_ENDPOINTS = {
     delete: (id: string) => `/api/apuntes/${id}`,
   },
   dashboard: {
-    getStats: '/api/dashboard/stats',
-    getRecentActivity: '/api/dashboard/activity',
+    resumen: '/api/dashboard/resumen',
+    proximasEntregas: '/api/dashboard/proximas-entregas',
   },
 } as const;
