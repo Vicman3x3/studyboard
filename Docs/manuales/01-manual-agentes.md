@@ -300,3 +300,22 @@ Un orquestador automatizaría estas decisiones, pero el valor educativo estuvo e
 **Autor:** Taller "Akuma no Code" - StudyBoard Team  
 **Fecha:** Mayo 2026  
 **Versión:** 1.0
+
+---
+
+## Únete a Nuestra Comunidad
+
+¿Quieres aprender más sobre desarrollo con IA y participar en futuros talleres?
+
+🌐 **Únete a Codemunyx:**  
+👉 https://linktr.ee/Codemunyx
+
+Aquí encontrarás:
+- Eventos y talleres futuros
+- Recursos de aprendizaje
+- Comunidad de desarrolladores
+- Proyectos colaborativos
+- Mentorías y soporte
+
+**¡Te esperamos!** 🚀
+

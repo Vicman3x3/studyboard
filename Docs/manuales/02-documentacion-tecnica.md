@@ -831,3 +831,22 @@ async exportPdf(@Request() req, @Res() res) {
 **Autor:** Taller "Akuma no Code"  
 **Versión:** 1.0  
 **Última actualización:** Mayo 2026
+
+---
+
+## Únete a Nuestra Comunidad
+
+¿Quieres aprender más sobre desarrollo con IA y participar en futuros talleres?
+
+🌐 **Únete a Codemunyx:**  
+👉 https://linktr.ee/Codemunyx
+
+Aquí encontrarás:
+- Eventos y talleres futuros
+- Recursos de aprendizaje
+- Comunidad de desarrolladores
+- Proyectos colaborativos
+- Mentorías y soporte
+
+**¡Te esperamos!** 🚀
+

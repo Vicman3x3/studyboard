@@ -770,3 +770,22 @@ Si tienes problemas, revisa la sección de [Solución de Problemas](#solución-d
 **Autor:** Taller "Akuma no Code"  
 **Versión:** 1.0  
 **Fecha:** Mayo 2026
+
+---
+
+## Únete a Nuestra Comunidad
+
+¿Quieres aprender más sobre desarrollo con IA y participar en futuros talleres?
+
+🌐 **Únete a Codemunyx:**  
+👉 https://linktr.ee/Codemunyx
+
+Aquí encontrarás:
+- Eventos y talleres futuros
+- Recursos de aprendizaje
+- Comunidad de desarrolladores
+- Proyectos colaborativos
+- Mentorías y soporte
+
+**¡Te esperamos!** 🚀
+
