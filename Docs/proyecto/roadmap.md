@@ -254,9 +254,6 @@
 | 10-06 | `FileUploaderComponent` — componente reutilizable con PrimeNG FileUpload | 🟢 Baja | 🔶 Media | 10-05 | ✅ |
 | 10-07 | Integrar uploader en `DetalleMateriaComponent` (por parcial) | 🟢 Baja | 🔶 Media | 10-06 | ✅ |
 | 10-08 | Integrar uploader en `TareaFormComponent` (adjuntos por tarea) | 🟢 Baja | 🔶 Media | 10-06 | ✅ |
-| 10-06 | `FileUploaderComponent` — componente reutilizable con PrimeNG FileUpload | 🟢 Baja | 🔶 Media | 10-05 | ⬜ |
-| 10-07 | Integrar uploader en `DetalleMateriaComponent` (por parcial) | 🟢 Baja | 🔶 Media | 10-06 | ⬜ |
-| 10-08 | Integrar uploader en `TareaFormComponent` (adjuntos por tarea) | 🟢 Baja | 🔶 Media | 10-06 | ⬜ |
 
 ### Issues adicionales (sin descomponer aún)
 
