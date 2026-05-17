@@ -34,10 +34,10 @@
 | 06 — Temarios | ✅ | 9 / 9 |
 | 07 — Calificaciones | ✅ | 10 / 10 |
 | 08 — Dashboard | ✅ | 8 / 8 |
-| 09 — Alertas | ⬜ | 0 / 6 |
+| 09 — Alertas | ✅ | 6 / 6 |
 | 10 — Documentos (Fase 3) | ⬜ | 0 / 8 |
 
-**Total:** 79 / 93 tareas completadas (85%)
+**Total:** 85 / 93 tareas completadas (91%)
 
 ---
 
@@ -226,13 +226,13 @@
 | # | Tarea | Prioridad | Complejidad | Dep. | Estado |
 |---|-------|-----------|-------------|------|--------|
 | **BACKEND** |
-| 09-01 | Endpoint `GET /alertas` — tareas con fechaEntrega en las próximas 48h no completadas | 🟡 Media | 🔶 Media | 04-01 | ⬜ |
-| 09-02 | Endpoint `POST /alertas/marcar-leida/:id` | 🟡 Media | 🔷 Baja | 09-01 | ⬜ |
+| 09-01 | Endpoint `GET /alertas` — tareas con fechaEntrega en las próximas 48h no completadas | 🟡 Media | 🔶 Media | 04-01 | ✅ |
+| 09-02 | Endpoint `POST /alertas/marcar-leida/:id` | 🟡 Media | 🔷 Baja | 09-01 | ✅ |
 | **FRONTEND** |
-| 09-03 | `AlertasService` — polling cada 5 minutos | 🟡 Media | 🔶 Media | 09-01 | ⬜ |
-| 09-04 | Badge numérico en navbar con conteo de alertas activas | 🟡 Media | 🔷 Baja | 09-03 | ⬜ |
-| 09-05 | Panel overlay de alertas al hacer clic en el badge (PrimeNG OverlayPanel) | 🟡 Media | 🔶 Media | 09-04 | ⬜ |
-| 09-06 | Toast automático al entrar a la app si hay alertas nuevas | 🟢 Baja | 🔷 Baja | 09-03 | ⬜ |
+| 09-03 | `AlertasService` — polling cada 5 minutos | 🟡 Media | 🔶 Media | 09-01 | ✅ |
+| 09-04 | Badge numérico en navbar con conteo de alertas activas | 🟡 Media | 🔷 Baja | 09-03 | ✅ |
+| 09-05 | Panel overlay de alertas al hacer clic en el badge (PrimeNG OverlayPanel) | 🟡 Media | 🔶 Media | 09-04 | ✅ |
+| 09-06 | Toast automático al entrar a la app si hay alertas nuevas | 🟢 Baja | 🔷 Baja | 09-03 | ✅ |
 
 ---
 

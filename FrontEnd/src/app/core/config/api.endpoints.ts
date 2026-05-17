@@ -78,4 +78,9 @@ export const API_ENDPOINTS = {
     resumen: '/api/dashboard/resumen',
     proximasEntregas: '/api/dashboard/proximas-entregas',
   },
+  alertas: {
+    getAll: '/api/alertas',
+    contarNoLeidas: '/api/alertas/contar-no-leidas',
+    marcarLeida: (id: string) => `/api/alertas/marcar-leida/${id}`,
+  },
 } as const;

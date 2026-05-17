@@ -11,6 +11,7 @@ import { HorarioModule } from './horario/horario.module';
 import { TemarioModule } from './temarios/temario.module';
 import { CalificacionesModule } from './calificaciones/calificaciones.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { AlertasModule } from './alertas/alertas.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     TemarioModule,
     CalificacionesModule,
     DashboardModule,
+    AlertasModule,
   ],
   controllers: [AppController],
   providers: [AppService],
