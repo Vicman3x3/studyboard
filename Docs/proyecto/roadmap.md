@@ -33,11 +33,11 @@
 | 05 — Horario | ✅ | 8 / 8 |
 | 06 — Temarios | ✅ | 9 / 9 |
 | 07 — Calificaciones | ✅ | 10 / 10 |
-| 08 — Dashboard | ⬜ | 0 / 8 |
+| 08 — Dashboard | ✅ | 8 / 8 |
 | 09 — Alertas | ⬜ | 0 / 6 |
 | 10 — Documentos (Fase 3) | ⬜ | 0 / 8 |
 
-**Total:** 71 / 93 tareas completadas (76%)
+**Total:** 79 / 93 tareas completadas (85%)
 
 ---
 
@@ -209,15 +209,15 @@
 | # | Tarea | Prioridad | Complejidad | Dep. | Estado |
 |---|-------|-----------|-------------|------|--------|
 | **BACKEND** |
-| 08-01 | Endpoint `GET /dashboard/resumen` — métricas agregadas del usuario | 🔴 Alta | ⚡ Alta | 03, 04, 07 | ⬜ |
-| 08-02 | Endpoint `GET /dashboard/proximas-entregas` — tareas 7 días hacia adelante | 🔴 Alta | 🔶 Media | 04-01 | ⬜ |
+| 08-01 | Endpoint `GET /dashboard/resumen` — métricas agregadas del usuario | 🔴 Alta | ⚡ Alta | 03, 04, 07 | ✅ |
+| 08-02 | Endpoint `GET /dashboard/proximas-entregas` — tareas 7 días hacia adelante | 🔴 Alta | 🔶 Media | 04-01 | ✅ |
 | **FRONTEND** |
-| 08-03 | `DashboardService` — llamadas HTTP | 🔴 Alta | 🔷 Baja | 08-01 | ⬜ |
-| 08-04 | `DashboardComponent` — layout con grid de widgets PrimeNG | 🔴 Alta | ⚡ Alta | 08-03 | ⬜ |
-| 08-05 | Widget: "¿Qué quieres hacer hoy?" — 6 accesos rápidos (storyboard) | 🔴 Alta | 🔷 Baja | 08-04 | ⬜ |
-| 08-06 | Widget: Próximas entregas (lista ordenada por fecha) | 🔴 Alta | 🔶 Media | 08-04 | ⬜ |
-| 08-07 | Widget: Promedio general + materias activas + tareas completadas | 🔴 Alta | 🔶 Media | 08-04 | ⬜ |
-| 08-08 | Flujo de onboarding mínimo para usuario nuevo (sin materias registradas) | 🟡 Media | 🔶 Media | 08-04 | ⬜ |
+| 08-03 | `DashboardService` — llamadas HTTP | 🔴 Alta | 🔷 Baja | 08-01 | ✅ |
+| 08-04 | `DashboardComponent` — layout con grid de widgets PrimeNG | 🔴 Alta | ⚡ Alta | 08-03 | ✅ |
+| 08-05 | Widget: "¿Qué quieres hacer hoy?" — 6 accesos rápidos (storyboard) | 🔴 Alta | 🔷 Baja | 08-04 | ✅ |
+| 08-06 | Widget: Próximas entregas (lista ordenada por fecha) | 🔴 Alta | 🔶 Media | 08-04 | ✅ |
+| 08-07 | Widget: Promedio general + materias activas + tareas completadas | 🔴 Alta | 🔶 Media | 08-04 | ✅ |
+| 08-08 | Flujo de onboarding mínimo para usuario nuevo (sin materias registradas) | 🟡 Media | 🔶 Media | 08-04 | ✅ |
 
 ---
 
